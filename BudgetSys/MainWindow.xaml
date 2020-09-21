@@ -8,16 +8,24 @@
         Title="MainWindow" Height="450" Width="1000">
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="149*"></RowDefinition>
-            <RowDefinition Height="271*"/>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <DataGrid Grid.Row="0" Grid.Column="0"  HorizontalAlignment="Left" Height="281" Margin="72,46,0,0" VerticalAlignment="Top" 
-                  Width="853" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" AutoGenerateColumns="True"
+        <GroupBox Header="批次">
+            <GroupItem>
+
+                <ListView Grid.Row="0" Grid.Column="0" Width="200" Height="307" ItemsSource="{Binding Path=Batches}" DisplayMemberPath="batchNo" SelectedValuePath="id"/>
+
+            </GroupItem>
+        </GroupBox>
+
+        <DataGrid Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left" Height="344" Margin="46,36,0,0" VerticalAlignment="Top" 
+                  Width="690" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" AutoGenerateColumns="True"
                   ItemsSource="{Binding Path=Details}"  RowEditEnding="DataGrid_RowEditEnding" 
-                  CellEditEnding="DataGrid_CellEditEnding" Grid.RowSpan="2"
+                  CellEditEnding="DataGrid_CellEditEnding"
                   AddingNewItem="DataGrid_AddingNewItem"
 
                   />

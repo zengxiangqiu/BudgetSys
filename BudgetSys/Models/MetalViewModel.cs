@@ -12,6 +12,6 @@ namespace BudgetSys.Models
     {
         public ObservableCollection<Metal> Details { get; set; }
 
-        public List<MetalBatch> Batches { get; set; }
+        public ObservableCollection<MetalBatch> Batches { get; set; }
     }
 }

@@ -32,7 +32,8 @@ namespace BudgetSys
             data= parser.ReadFile("Config.ini",Encoding.UTF8);
             InitializeComponent();
             this.DataContext = new MetalViewModel {
-                Details = Moq()
+                Details = Moq(),
+                Batches = MoqBatch()
             };
         }
 
@@ -52,6 +53,21 @@ namespace BudgetSys
             return metals;
         }
 
+        private ObservableCollection<MetalBatch> MoqBatch()
+        {
+            var batches = new ObservableCollection<MetalBatch>();
+            var batch = new MetalBatch
+            {
+                batchNo = 1,
+                batchType = BatchType.Metal,
+                id = 0
+                 
+             
+            };
+            batches.Add(batch);
+            return batches;
+        }
+
         List<MetalMaterial> metalMaterials =   new List<MetalMaterial> {
                         new MetalMaterial { id = 0, name = "SECC", cost = 6.0f, description = "（GI/SGCC)" },
                         new MetalMaterial { id = 1, name = "SUS", cost = 31.0f, description = "（GI/SGCC)" },
@@ -60,6 +76,7 @@ namespace BudgetSys
                         new MetalMaterial { id = 4, name = "Al5052", cost = 30.0f, description = "（GI/SGCC)" },
                         new MetalMaterial { id = 5, name = "Al1050", cost = 25.0f, description = "（GI/SGCC)" }
                     };
+
 
 private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {

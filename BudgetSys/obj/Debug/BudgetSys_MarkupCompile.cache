@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\Projects\BudgetSys\BudgetSys\obj\Debug\
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\
 BudgetSys
 none
 false
 DEBUG;TRACE
-D:\Projects\BudgetSys\BudgetSys\App.xaml
-11151548125
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\App.xaml
+2-612280565
 
-9205135721
-14857892727
-MainWindow.xaml;
+11-731871444
+15654953659
+MainWindow.xaml;SaveWindow.xaml;
 
 False
 

@@ -16,3 +16,25 @@ D:\Projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.csproj.CoreCompileInputs.cac
 D:\Projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.csproj.CopyComplete
 D:\Projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.exe
 D:\Projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.pdb
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\BudgetSys.exe.config
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\BudgetSys.exe
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\BudgetSys.pdb
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\INIFileParser.dll
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\INIFileParser.xml
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.csprojAssemblyReference.cache
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\MainWindow.g.cs
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\App.g.cs
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys_MarkupCompile.cache
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys_MarkupCompile.lref
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\MainWindow.baml
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.g.resources
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.Properties.Resources.resources
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.csproj.GenerateResource.cache
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.csproj.CoreCompileInputs.cache
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.csproj.CopyComplete
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.exe
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.pdb
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.dll
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.xml
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.g.cs
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.baml

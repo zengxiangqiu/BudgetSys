@@ -8,9 +8,9 @@ namespace BudgetSys.Models
 {
     public class MetalBatch
     {
-        public int id { get; set; }
+        //public int id { get; set; }
 
-        public int batchNo { get; set; }
+        public string batchNo { get; set; }
 
         public BatchType batchType { get; set; }
     }

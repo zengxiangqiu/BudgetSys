@@ -5,30 +5,54 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BudgetSys"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="1000">
+        Title="MainWindow" Height="450" Width="1336.206">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="5*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <GroupBox Header="批次">
-            <GroupItem>
-
-                <ListView Grid.Row="0" Grid.Column="0" Width="200" Height="307" ItemsSource="{Binding Path=Batches}" DisplayMemberPath="batchNo" SelectedValuePath="id"/>
-
-            </GroupItem>
+        <StackPanel Margin="1,4,1,4" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <TextBlock Margin="4,4" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">类别</TextBlock>
+            <ComboBox Margin="4,4" Width="70px"></ComboBox>
+            <Button Width="60px"  Height="20px" Margin="1,5,1,4" Click="BtnNew_Click" Name="btnNew">新增</Button>
+            <Button Width="60px"  Height="20px" Margin="1,5,1,4" Click="Button_Click">保存</Button>
+        </StackPanel>
+        <GroupBox Header="批次" Grid.Row="1" Grid.Column="0">
+            <ListView  
+                Name="lvBatch"
+                HorizontalAlignment="Stretch"  
+                       VerticalAlignment="Stretch" 
+                       ItemsSource="{Binding Path=Batches}" 
+                       DisplayMemberPath="batchNo" 
+                       SelectedValuePath="batchNo"
+                       MouseDoubleClick="ListView_MouseDoubleClick"
+                       />
         </GroupBox>
-
-        <DataGrid Grid.Row="0" Grid.Column="1"  HorizontalAlignment="Left" Height="344" Margin="46,36,0,0" VerticalAlignment="Top" 
-                  Width="690" AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" AutoGenerateColumns="True"
-                  ItemsSource="{Binding Path=Details}"  RowEditEnding="DataGrid_RowEditEnding" 
+        <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="True">
+            <GroupBox Header="表格录入">
+                <DataGrid   
+                    Name="dgDetail"
+                    HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 
+                  AutoGeneratingColumn="DataGrid_AutoGeneratingColumn" AutoGenerateColumns="True"
+                  ItemsSource="{Binding Path=Details, UpdateSourceTrigger=LostFocus}"  
                   CellEditEnding="DataGrid_CellEditEnding"
                   AddingNewItem="DataGrid_AddingNewItem"
-
-                  />
+                   CurrentCellChanged="DataGrid_CurrentCellChanged"
+                    BeginningEdit="DgDetail_BeginningEdit"
+                    
+                  >
+                    <DataGrid.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="删除" Name="btnDelete" Click="BtnDelete_Click"></MenuItem>
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                </DataGrid>
+            </GroupBox>
+        </DockPanel>
 
     </Grid>
 </Window>

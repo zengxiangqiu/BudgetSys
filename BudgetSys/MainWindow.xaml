@@ -30,7 +30,13 @@
                        DisplayMemberPath="batchNo" 
                        SelectedValuePath="batchNo"
                        MouseDoubleClick="ListView_MouseDoubleClick"
-                       />
+                       >
+                <ListView.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="删除" Name="btnBatchDelete" Click="BtnBatchDelete_Click"></MenuItem>
+                    </ContextMenu>
+                </ListView.ContextMenu>
+            </ListView>
         </GroupBox>
         <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="True">
             <GroupBox Header="表格录入">

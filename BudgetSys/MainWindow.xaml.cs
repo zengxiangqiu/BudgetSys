@@ -286,5 +286,10 @@ namespace BudgetSys
             
             (this.dgDetail.DataContext as MetalViewModel).Details.Remove(this.dgDetail.SelectedItem as   Metal);
         }
+
+        private void BtnBatchDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

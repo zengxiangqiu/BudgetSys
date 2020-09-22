@@ -8,9 +8,9 @@ using System.Windows;
 
 namespace BudgetSys.Models
 {
-    public class MetalViewModel
+    public class MetalViewModel<T> where T:RawMaterial
     {
-        public ObservableCollection<Metal> Details { get; set; }
+        public ObservableCollection<T> Details { get; set; }
 
         public ObservableCollection<MetalBatch> Batches { get; set; }
     }

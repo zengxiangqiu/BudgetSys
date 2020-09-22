@@ -38,3 +38,7 @@ D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.dll
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.xml
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.g.cs
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.baml
+D:\Projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.dll
+D:\Projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.xml
+D:\Projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.g.cs
+D:\Projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.baml

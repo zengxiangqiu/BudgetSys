@@ -29,7 +29,7 @@ namespace BudgetSys
     {
         IniData data;
 
-
+        MetalBatch currentBatch;
 
         private readonly string metalBasePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/Batches/Metal/";
 
@@ -184,31 +184,30 @@ namespace BudgetSys
         {
             var viewModel = this.DataContext as MetalViewModel;
             var metals = Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Details);
-            var batchId = viewModel.Details.FirstOrDefault()?.batchNo;
-            if (batchId == null)
+            if (currentBatch == null)
             {
-                var mb = new MetalBatch
+                currentBatch = new MetalBatch
                 {
                     batchNo = string.Empty
                 };
-                var saveWindow = new SaveWindow(mb);
+                var saveWindow = new SaveWindow(currentBatch);
                 saveWindow.ShowDialog();
-                if (mb.batchNo.Equals(string.Empty))
+                if (currentBatch.batchNo.Equals(string.Empty))
                 {
                     MessageBox.Show("保存失败，请输入文件名", "提示");
                     return;
                 }
-                if (File.Exists(metalBasePath + mb.batchNo + ".json"))
+                if (File.Exists(metalBasePath + currentBatch.batchNo + ".json"))
                 {
-                    if (MessageBox.Show($"批次 {mb.batchNo} 已存在，是否覆盖？", "保存", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
+                    if (MessageBox.Show($"批次 {currentBatch.batchNo} 已存在，是否覆盖？", "保存", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
                     {
-                        File.WriteAllText(metalBasePath + mb.batchNo + ".json", metals);
+                        File.WriteAllText(metalBasePath + currentBatch.batchNo + ".json", metals);
                         MessageBox.Show("保存成功", "提示");
                     }
                 }
                 else
                 {
-                    File.WriteAllText(metalBasePath + mb.batchNo + ".json", metals);
+                    File.WriteAllText(metalBasePath + currentBatch.batchNo + ".json", metals);
                     MessageBox.Show("保存成功", "提示");
 
                 }
@@ -216,7 +215,7 @@ namespace BudgetSys
             }
             else
             {
-                File.WriteAllText(metalBasePath + batchId+".json", metals);
+                File.WriteAllText(metalBasePath + currentBatch.batchNo + ".json", metals);
                 MessageBox.Show("保存成功","提示");
             }
         }
@@ -233,6 +232,8 @@ namespace BudgetSys
                 Batches = MoqBatch(),
                 Details = details
             };
+
+            currentBatch = batch;
         }
 
         private void DataGrid_CurrentCellChanged(object sender, EventArgs e)
@@ -277,6 +278,7 @@ namespace BudgetSys
                 Batches = MoqBatch(),
                 Details = new ObservableCollection<Metal>()
             };
+            currentBatch = null;
         }
 
         private void BtnDelete_Click(object sender, RoutedEventArgs e)

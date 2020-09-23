@@ -20,14 +20,22 @@ namespace BudgetSys
     /// </summary>
     public partial class SaveWindow : Window
     {
+        private MetalBatch _batch;
         public SaveWindow(MetalBatch batch)
         {
             InitializeComponent();
             this.DataContext = batch;
+            _batch = batch;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            _batch.batchNo = "Cancel";
             this.Close();
         }
     }

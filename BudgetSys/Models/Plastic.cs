@@ -17,7 +17,20 @@ namespace BudgetSys.Models
         /// <summary>
         ///口水公式Id 
         /// </summary>
-        public int p_salivaId { get; set; }
+
+        private float _salivaId;
+        public float p_salivaId
+        {
+            get { return _salivaId; }
+            set
+            {
+                if (_salivaId != value)
+                {
+                    _salivaId = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// 毛重
@@ -45,6 +58,5 @@ namespace BudgetSys.Models
         /// ME合计2
         /// </summary>
         public float p_ME2 { get; set; }
-
     }
 }

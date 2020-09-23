@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BudgetSys.Models
 {
-    public abstract class RawMaterial : INotifyPropertyChanged
+    public abstract class RawMaterial : INotifyPropertyChanged, IEditableObject
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -20,6 +20,17 @@ namespace BudgetSys.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public void BeginEdit()
+        {
+        }
+
+        public void EndEdit()
+        {
+        }
+
+        public void CancelEdit()
+        {
+        }
 
         public int id { get; set; }
 
@@ -101,11 +112,60 @@ namespace BudgetSys.Models
                 }
             }
         }
+        private float _costOfMetetial2;
+        public float costOfMeterial2
+        {
+            get
+            {
+                return _costOfMetetial2;
+            }
+            set
+            {
+                if (_costOfMetetial2 != value)
+                {
+                    _costOfMetetial2 = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
-        public string costOfMeterial2 { get; set; }
-        public string finishedCost2 { get; set; }
-        public string CMF2 { get; set; }
-        public string total2 { get; set; }
+        private float _finishedCost2;
+        public float finishedCost2
+        {
+            get
+            {
+                return _finishedCost2;
+            }
+            set
+            {
+                if (_finishedCost2 != value)
+                {
+                    _finishedCost2 = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+        public float CMF2 { get; set; }
+
+
+        private float _total2;
+
+        public float total2
+        {
+            get
+            {
+                return _total2;
+            }
+            set
+            {
+                if (_total2 != value)
+                {
+                    _total2 = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
 
     }

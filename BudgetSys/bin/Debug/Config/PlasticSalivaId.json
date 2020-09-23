@@ -1,0 +1,22 @@
+[
+    {
+        "scope": 5,
+        "percent": 3,
+    },
+    {
+        "scope": 20,
+        "percent": 1,
+    },
+    {
+        "scope": 100,
+        "percent": 0.15,
+    },
+    {
+        "scope": 500,
+        "percent": 0.05,
+    },
+    {
+        "scope": 1000,
+        "percent": 0.02,
+    }  
+]

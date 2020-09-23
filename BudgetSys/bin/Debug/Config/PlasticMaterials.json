@@ -1,0 +1,52 @@
+[
+    {
+        "id": 0,
+        "name": "ABS",
+        "description": "ABS",
+        "cost": 11.40,
+        "SG":1.1
+    },
+   
+    {
+        "id": 1,
+        "name": "PC",
+        "description": "PC",
+        "cost": 25.00,
+        "SG":1.2
+    },
+    {
+        "id": 2,
+        "name": "PMMA",
+        "description": "PMMA",
+        "cost": 28.00,
+        "SG":1.2
+    },
+    {
+        "id": 3,
+        "name": "PC+ABS",
+        "description": "PC+ABS",
+        "cost": 21.00,
+        "SG":1.15
+    },
+    {
+        "id": 4,
+        "name": "ABS+PMMA",
+        "description": "ABS+PMMA",
+        "cost": 25.00,
+        "SG":1.15
+    },
+    {
+        "id": 5,
+        "name": "POM",
+        "description": "POM",
+        "cost": 29.00,
+        "SG":1.5
+    },
+    {
+        "id": 6,
+        "name": "Rubber",
+        "description": "Rubber",
+        "cost": 34.57,
+        "SG":1
+    }
+]

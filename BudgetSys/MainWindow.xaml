@@ -10,6 +10,14 @@
     <Grid>
         <Grid.Resources>
             <converter:BatchConverter x:Key="batchConverter"/>
+            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock" x:Key="CenterTitle">
+                <Style.Setters>
+                    <Setter Property="VerticalAlignment" Value="Center"></Setter>
+                    <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+                    <Setter Property="TextAlignment" Value="Justify"></Setter>
+                    <Setter Property="Margin" Value="4,4"></Setter>
+                </Style.Setters>
+            </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"></ColumnDefinition>
@@ -17,19 +25,36 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Margin="1,4,1,4" Orientation="Horizontal" Grid.ColumnSpan="2">
-            <TextBlock Margin="4,4" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">类别</TextBlock>
+        <DockPanel Grid.Row="0" Grid.ColumnSpan="2">
+            <Menu DockPanel.Dock="Top" FontSize="15px" >
+                <MenuItem Header="主档维护" Margin="5,5">
+                    <MenuItem Header="Metal-Meterials" Click="MenuItem_Click"/>
+                    <MenuItem Header="Metal-Tonnages"  Click="MenuItem_Click"/>
+                    <MenuItem Header="Plastic-Meterials"  Click="MenuItem_Click"/>
+                    <MenuItem Header="Plastic-Tonnages"  Click="MenuItem_Click"/>
+                    <Separator />
+                    <MenuItem Header="Plastic-SalivaId"  Click="MenuItem_Click"/>
+                    <Separator />
+                    <MenuItem Header="ExchangeRate"  Click="MenuItem_Click"/>
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <StackPanel Margin="1,4,1,4" Orientation="Horizontal" Grid.ColumnSpan="2" Grid.Row="1">
+            <TextBlock Style="{StaticResource CenterTitle}">材料类别</TextBlock>
             <ComboBox  Name="materialType" Margin="4,4" Width="70px" ItemsSource="{Binding Path=MaterialTypes}"  SelectionChanged="ComboBox_SelectionChanged">
             </ComboBox>
-            <Button Width="60px"  Height="20px" Margin="1,5,1,4" Click="BtnNew_Click" Name="btnNew">新增</Button>
-            <Button Width="60px"  Height="20px" Margin="1,5,1,4" Click="Button_Click">保存</Button>
+            <TextBlock Text="批次号" Style="{StaticResource CenterTitle}"/>
+            <TextBox Width="80px" Margin="4,4" Text="{Binding Path=BatchInput, Mode=TwoWay}"></TextBox>
+            <Button Width="60px"  Height="20px" Margin="4,4" Click="BtnNew_Click" Name="btnNew">新增</Button>
+            <Button Width="60px"  Height="20px" Margin="4,4" Click="btnSave_Click">保存</Button>
         </StackPanel>
-        <GroupBox Header="批次" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <GroupBox Header="批次" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DockPanel >
-            <TextBox Margin="0,2,0,5" DockPanel.Dock="Top" TextChanged="TextBox_TextChanged"></TextBox>
-            <ListView  
+                <TextBox Margin="0,2,0,5" DockPanel.Dock="Top" TextChanged="TextBox_TextChanged"></TextBox>
+                <ListView  
                 Name="lvBatch"
                 HorizontalAlignment="Stretch"  
                        VerticalAlignment="Stretch" 
@@ -40,16 +65,16 @@
                        MouseDoubleClick="ListView_MouseDoubleClick"
                 
                        >
-                <ListView.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="删除" Name="btnBatchDelete" Click="BtnBatchDelete_Click"></MenuItem>
-                    </ContextMenu>
-                </ListView.ContextMenu>
-            </ListView>
+                    <ListView.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="删除" Name="btnBatchDelete" Click="BtnBatchDelete_Click"></MenuItem>
+                        </ContextMenu>
+                    </ListView.ContextMenu>
+                </ListView>
             </DockPanel>
         </GroupBox>
-        <DockPanel Grid.Row="1" Grid.Column="1" LastChildFill="True">
-            <GroupBox   Header="{Binding Path=CurrentBatch, Converter={StaticResource  batchConverter}, FallbackValue='表格录入'}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <DockPanel Grid.Row="2" Grid.Column="1" LastChildFill="True">
+            <GroupBox   Header="{Binding Path=CurrentBatch, Converter={StaticResource  batchConverter}, FallbackValue='表格录入', Mode=TwoWay}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <DataGrid   
                     Name="dgDetail"
                     HorizontalAlignment="Stretch" VerticalAlignment="Stretch" 

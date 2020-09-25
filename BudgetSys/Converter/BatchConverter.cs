@@ -17,7 +17,7 @@ namespace BudgetSys.Converter
         {
             MetalBatch batch = (MetalBatch)value;
             if (batch != null)
-                return $"表格录入  {batch.batchType}   批次-{batch.batchNo}  汇率-{Sys.ExchangeRate.Current}";
+                return $"表格录入  {batch.batchType}   批次-{batch.batchNo}  汇率-{Sys.ExchangeRate.FirstOrDefault()?.Current}";
             else
                 return "表格录入";
         }

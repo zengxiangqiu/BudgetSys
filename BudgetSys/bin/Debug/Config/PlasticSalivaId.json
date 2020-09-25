@@ -1,21 +1,26 @@
 [
     {
+        "id":0,
         "scope": 5,
         "percent": 3,
     },
     {
+        "id":1,
         "scope": 20,
         "percent": 1,
     },
     {
+        "id":2,
         "scope": 100,
         "percent": 0.15,
     },
     {
+        "id":3,
         "scope": 500,
         "percent": 0.05,
     },
     {
+        "id":4,
         "scope": 1000,
         "percent": 0.02,
     }  

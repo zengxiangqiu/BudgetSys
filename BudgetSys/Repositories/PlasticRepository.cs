@@ -12,57 +12,19 @@ using BudgetSys.Models;
 
 namespace BudgetSys.Repositories
 {
-    class PlasticRepository : IMatetrialRepository
+    class PlasticRepository : MatetiralRepository, IMatetrialRepository
     {
-        private readonly string metalBasePath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/Batches/Plastic/";
-
-        public object AddNewItem(int id, string batchNo)
+        public PlasticRepository() : base(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/Batches/Plastic/")
         {
-            var metal = new Plastic
-            {
-                id = id,
-                batchNo = batchNo
-            };
-            return metal;
+
         }
 
         public void AutoGenColumn(DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyName == "batchNo")
-            {
-                e.Cancel = true;
-                return;
-            }
-            else
-            {
-                if (e.PropertyName == "materialId")
-                {
-                    var templateColumn = new DataGridComboBoxColumn();
-                    templateColumn.ItemsSource = Sys.plasticMaterials;
-                    templateColumn.DisplayMemberPath = "name";
-                    templateColumn.SelectedValuePath = "id";
-                    var binding = new Binding("materialId");
-                    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-                    templateColumn.SelectedValueBinding = binding;
-                    e.Column = templateColumn;
-                }
-                else if (e.PropertyName == "tonnageId")
-                {
-                    var templateColumn = new DataGridComboBoxColumn();
-                    templateColumn.ItemsSource = Sys.plasticTonnages;
-                    templateColumn.DisplayMemberPath = "tonnage";
-                    templateColumn.SelectedValuePath = "id";
-                    var binding = new Binding("tonnageId");
-                    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
-                    templateColumn.SelectedValueBinding = binding;
-                    e.Column = templateColumn;
-                }
-                e.Column.Header = e.PropertyName;
-                //e.Column.Header = data["Metal"][e.PropertyName];
-            }
+            base.AutoGenColumns<Plastic>(e);
         }
 
-        public void Calculate(RawMaterial material)
+        public override void Calculate(RawMaterial material)
         {
             var plastic = material as Plastic;
 
@@ -83,86 +45,65 @@ namespace BudgetSys.Repositories
                 }
 
                 //口水
-                plastic.p_salivaId = plastic.p_netWeigth * salivaId.percent;
+                plastic.p_salivaId = Math.Round(plastic.p_netWeigth * salivaId.percent,2);
                 //毛重量
-                plastic.p_grossWeight = plastic.qty *( plastic.p_netWeigth+plastic.p_salivaId);
+                plastic.p_grossWeight = Math.Round(plastic.qty *( plastic.p_netWeigth+plastic.p_salivaId),2);
 
                 //损耗
-                plastic.loss = plastic.p_grossWeight * 0.03f;
+                plastic.loss = Math.Round(plastic.p_grossWeight * 0.03f,2);
 
                 // 加工成本 成本公式*周期s/60/模穴*数量
-                plastic.finishedCost1 = t_cost*plastic.p_cycle/60 /plastic.p_cavity* plastic.qty ;
+                plastic.finishedCost1 = Math.Round(t_cost *plastic.p_cycle/60 /plastic.p_cavity* plastic.qty,2) ;
 
-                if (float.IsNaN(plastic.finishedCost1) || float.IsInfinity(plastic.finishedCost1))
+                if (double.IsNaN(plastic.finishedCost1) || double.IsInfinity(plastic.finishedCost1))
                     plastic.finishedCost1 = 0;
 
                 //材料成本 单价公式*（毛重量+损耗）/1000*数量
-                plastic.costOfMeterial1 = (plastic.p_grossWeight + plastic.loss) /1000 * cost * plastic.qty;
+                plastic.costOfMeterial1 = Math.Round((plastic.p_grossWeight + plastic.loss) /1000 * cost * plastic.qty,2);
 
                 //ME
-                plastic.p_ME1 = plastic.finishedCost1 + plastic.costOfMeterial1;
+                plastic.p_ME1 = Math.Round(plastic.finishedCost1 + plastic.costOfMeterial1, 2);
 
                 //total（ME + CMF）/ 良率
-                plastic.total1 = (plastic.p_ME1 + plastic.CMF1) / plastic.yield;
+                plastic.total1 = Math.Round((plastic.p_ME1 + plastic.CMF1) / (plastic.yield/100),2);
 
-                if (float.IsNaN(plastic.total1) || float.IsInfinity(plastic.total1))
+                if (double.IsNaN(plastic.total1) || double.IsInfinity(plastic.total1))
                     plastic.total1 = 0;
 
                 // 加工成本2
-                plastic.finishedCost2 = plastic.finishedCost1 * Sys.ExchangeRate.Current;
+                plastic.finishedCost2 = Math.Round(plastic.finishedCost1 / Sys.ExchangeRate.First().Current,2);
 
                 //材料成本2
-                plastic.costOfMeterial2 = plastic.costOfMeterial1 * Sys.ExchangeRate.Current;
+                plastic.costOfMeterial2 = Math.Round(plastic.costOfMeterial1 / Sys.ExchangeRate.First().Current,2);
 
-                plastic.p_ME2 = plastic.p_ME1 * Sys.ExchangeRate.Current;
+                plastic.p_ME2 = Math.Round(plastic.p_ME1 / Sys.ExchangeRate.First().Current,2);
 
                 //total2
-                plastic.total2 = plastic.total1 * Sys.ExchangeRate.Current;
+                plastic.total2 = Math.Round(plastic.total1 / Sys.ExchangeRate.First().Current,2);
 
-                if (float.IsNaN(plastic.total2) || float.IsInfinity(plastic.total2))
+                if (double.IsNaN(plastic.total2) || double.IsInfinity(plastic.total2))
                     plastic.total2 = 0;
             }
         }
 
-
         public object CreateViewModel(MetalBatch batch = null)
         {
-            if (batch == null)
-            {
-                return new MetalViewModel<Plastic>
-                {
-                    Batches = GetBatches(),
-                    Details = new ObservableCollection<Plastic>(),
-                    CurrentBatch = new MetalBatch { batchType = BatchType.Plastic }
-                };
-            }
-            else
-            {
-                var details = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<Plastic>>(File.ReadAllText(metalBasePath + batch.batchNo + ".json"));
-                return new MetalViewModel<Plastic>
-                {
-                    Batches = GetBatches(),
-                    Details = details,
-                    CurrentBatch = batch
-                };
-            }
+            return base.CreateViewModel<Plastic>(batch);
         }
 
-        public void Delete(object dataContext, object material)
+        public void DeleteRecord(object dataContext, object material)
         {
-            (dataContext as MetalViewModel<Plastic>).Details.Remove(material as Plastic);
+            base.DeleteRecord<Plastic>(dataContext, material as Plastic);
+        }
+
+        public void DeleteBatch(object dataContext, MetalBatch batch)
+        {
+            base.DeleteBatch<Plastic>(dataContext, batch);
         }
 
         public ObservableCollection<MetalBatch> GetBatches()
         {
-            var batches = new DirectoryInfo(metalBasePath).GetFiles("*.json");
-            var batchesList = new ObservableCollection<MetalBatch>(batches.Select(x => new MetalBatch
-            {
-                batchNo = x.Name.Replace(".json", ""),
-                batchType = BatchType.Plastic,
-            }));
-
-            return batchesList;
+            return base.GetBatches<Plastic>();
         }
 
         public void RenameColumn(DataGridColumn column)
@@ -172,49 +113,14 @@ namespace BudgetSys.Repositories
             column.Header = config.Value.description;
         }
 
-        public void Save(object dataContext, MetalBatch currentBatch)
+        public void Save(object dataContext)
         {
-            var viewModel = dataContext as MetalViewModel<Plastic>;
-            var metals = Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Details);
-            if (currentBatch == null)
-            {
-                currentBatch = new MetalBatch
-                {
-                    batchNo = string.Empty
-                };
-                var saveWindow = new SaveWindow(currentBatch);
-                saveWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                saveWindow.ShowDialog();
-                if (currentBatch == null)
-                {
-                    return;
-                }
-                if (currentBatch.batchNo.Equals(string.Empty))
-                {
-                    MessageBox.Show("保存失败，请输入文件名", "提示");
-                    return;
-                }
-                if (File.Exists(metalBasePath + currentBatch.batchNo + ".json"))
-                {
-                    if (MessageBox.Show($"批次 {currentBatch.batchNo} 已存在，是否覆盖？", "保存", MessageBoxButton.OKCancel) == MessageBoxResult.OK)
-                    {
-                        File.WriteAllText(metalBasePath + currentBatch.batchNo + ".json", metals);
-                        MessageBox.Show("保存成功", "提示");
-                    }
-                }
-                else
-                {
-                    File.WriteAllText(metalBasePath + currentBatch.batchNo + ".json", metals);
-                    MessageBox.Show("保存成功", "提示");
-                }
+            base.Save<Plastic>(dataContext);
+        }
 
-            }
-            else
-            {
-                File.WriteAllText(metalBasePath + currentBatch.batchNo + ".json", metals);
-                MessageBox.Show("保存成功", "提示");
-            }
-            viewModel.Batches.Add(currentBatch);
+        public object AddNewItem(object dataContext)
+        {
+            return base.AddNewItem<Plastic>(dataContext);
         }
     }
 }

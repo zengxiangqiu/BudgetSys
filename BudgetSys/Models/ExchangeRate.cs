@@ -8,6 +8,7 @@ namespace BudgetSys.Models
 {
     public class ExchangeRate
     {
+        public int id { get; set; }
         public float Current { get; set; }
     }
 }

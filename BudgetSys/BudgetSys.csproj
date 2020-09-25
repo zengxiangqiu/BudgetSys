@@ -73,6 +73,7 @@
     <Compile Include="Models\Sys.cs" />
     <Compile Include="RawMaterialFactory.cs" />
     <Compile Include="Repositories\IMatetrialRepository.cs" />
+    <Compile Include="Repositories\MatetiralRepository.cs" />
     <Compile Include="Repositories\MetalRepository.cs" />
     <Compile Include="Repositories\PlasticRepository.cs" />
     <Compile Include="SaveWindow.xaml.cs">

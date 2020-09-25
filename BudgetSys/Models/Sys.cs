@@ -52,14 +52,14 @@ namespace BudgetSys.Models
             }
         }
 
-        private static ExchangeRate _exchangeRate;
-        public static ExchangeRate ExchangeRate
+        private static List<ExchangeRate> _exchangeRate;
+        public static List<ExchangeRate> ExchangeRate
         {
             get
             {
                 if (_exchangeRate == null)
                 {
-                    _exchangeRate = Newtonsoft.Json.JsonConvert.DeserializeObject<ExchangeRate>(File.ReadAllText(configPath + "ExchangeRate.json"));
+                    _exchangeRate = Newtonsoft.Json.JsonConvert.DeserializeObject<List<ExchangeRate>>(File.ReadAllText(configPath + "ExchangeRate.json"));
                 }
                 return _exchangeRate;
             }
@@ -103,6 +103,16 @@ namespace BudgetSys.Models
                 }
                 return _plasticSalivaId.OrderBy(x=>x.scope).ToList();
             }
+        }
+
+        public static void Reset()
+        {
+            Sys._exchangeRate = null;
+            Sys._metalMaterials = null;
+            Sys._plasticMaterials = null;
+            Sys._plasticSalivaId = null;
+            Sys._plasticTonnages = null;
+            Sys._metalTonnages = null;
         }
     }
 }

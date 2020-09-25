@@ -1,0 +1,168 @@
+﻿using BudgetSys.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Data;
+
+namespace BudgetSys.Repositories
+{
+    public abstract class MatetiralRepository
+    {
+        public MatetiralRepository(string basePath)
+        {
+            this.metalBasePath = basePath;
+        }
+
+        protected readonly string metalBasePath = "";
+        public virtual void Save<T>(object dataContext) where T: RawMaterial
+        {
+            var viewModel = dataContext as MetalViewModel<T>;
+            var metals = Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Details);
+
+            var batchNo = viewModel.BatchInput.Trim();
+            if (viewModel.CurrentBatch.batchNo.Equals(String.Empty))
+            {
+                //文件名不能为空
+                if (batchNo.Equals(string.Empty))
+                {
+                    throw new Exception("文件名不能为空");
+                }
+                //文件已存在
+                if (File.Exists(metalBasePath + batchNo + ".json"))
+                {
+                    throw new Exception("批次已存在");
+                }
+            }
+            else
+            {
+                batchNo = viewModel.CurrentBatch.batchNo;
+            }
+            //保存
+            File.WriteAllText(metalBasePath + batchNo + ".json", metals);
+            var batch = new MetalBatch { batchNo = batchNo, batchType = typeof(T) == typeof(Metal) ? BatchType.Metal : BatchType.Plastic };
+            if (viewModel.Batches.Where(x => x.batchNo == batch.batchNo).Count() == 0)
+            {
+                viewModel.Batches.Add(batch);
+                viewModel.CurrentBatch = batch;
+            }
+        }
+
+        protected virtual void DeleteBatch<T>(object dataContext, MetalBatch batch) where T : RawMaterial
+        {
+            File.Delete(metalBasePath + batch.batchNo + ".json");
+            (dataContext as MetalViewModel<T>).Batches.Remove(batch);
+        }
+
+        protected virtual void DeleteRecord<T>(object dataContext, T material) where T : RawMaterial
+        {
+            (dataContext as MetalViewModel<T>).Details.Remove(material);
+        }
+
+        protected virtual ObservableCollection<MetalBatch> GetBatches<T>() where T : RawMaterial
+        {
+            var batches = new DirectoryInfo(metalBasePath).GetFiles("*.json");
+            var batchesList = new ObservableCollection<MetalBatch>(batches.Select(x => new MetalBatch
+            {
+                batchNo = x.Name.Replace(".json", ""),
+                batchType  = typeof(T) == typeof(Metal) ? BatchType.Metal : BatchType.Plastic,
+            }));
+
+            return batchesList;
+        }
+
+        protected object CreateViewModel<T>(MetalBatch batch)where T:RawMaterial
+        {
+            ObservableCollection<T> details;
+            try
+            {
+                details = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<T>>(File.ReadAllText(metalBasePath + batch.batchNo + ".json"));
+            }
+            catch (Exception)
+            {
+                details = new ObservableCollection<T>();
+            }
+            return new MetalViewModel<T>
+            {
+                Batches = GetBatches<T>(),
+                Details = details,
+                CurrentBatch = batch??new MetalBatch { batchType = typeof(T) == typeof(Metal) ? BatchType.Metal : BatchType.Plastic }
+            };
+        }
+
+        protected virtual void AutoGenColumns<T>(DataGridAutoGeneratingColumnEventArgs e)
+        {
+            if (e.PropertyName == "id")
+            {
+                e.Column.IsReadOnly = true;
+            }
+            if (e.PropertyName == "batchNo")
+            {
+                e.Cancel = true;
+                return;
+            }
+            else
+            {
+                if (e.PropertyName == "materialId")
+                {
+                    var templateColumn = new DataGridComboBoxColumn();
+                    if (typeof(T) == typeof(Metal))
+                    {
+                        templateColumn.ItemsSource = Sys.metalMaterials;
+                    }
+                    else
+                    {
+                        templateColumn.ItemsSource = Sys.plasticMaterials;
+                    }
+                    templateColumn.DisplayMemberPath = "name";
+                    templateColumn.SelectedValuePath = "id";
+                    var binding = new Binding("materialId");
+                    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                    templateColumn.SelectedValueBinding = binding;
+                    e.Column = templateColumn;
+                }
+                else if (e.PropertyName == "tonnageId")
+                {
+                    var templateColumn = new DataGridComboBoxColumn();
+                    if (typeof(T) == typeof(Metal))
+                    {
+                        templateColumn.ItemsSource = Sys.metalTonnages;
+                    }
+                    else
+                    {
+                        templateColumn.ItemsSource = Sys.plasticTonnages;
+                    }
+                    templateColumn.DisplayMemberPath = "tonnage";
+                    templateColumn.SelectedValuePath = "id";
+                    var binding = new Binding("tonnageId");
+                    binding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                    templateColumn.SelectedValueBinding = binding;
+                    e.Column = templateColumn;
+                }
+                e.Column.Header = e.PropertyName;
+                //e.Column.Header = data["Metal"][e.PropertyName];
+            }
+        }
+
+        public virtual void Calculate(RawMaterial material)
+        {
+
+        }
+
+        protected virtual object AddNewItem<T>(object dataContext) where T:RawMaterial, new()
+        {
+            var batchNo = (dataContext as MetalViewModel<T>).CurrentBatch?.batchNo;
+            var metal = new T
+            {
+                id = (dataContext as MetalViewModel<T>).Details.Count,
+                batchNo = batchNo
+            };
+            return metal;
+        }
+
+    }
+}

@@ -43,8 +43,8 @@ namespace BudgetSys.Models
 
         public int  qty { get; set; }
 
-        private float _loss;
-        public float loss
+        private double _loss;
+        public double loss
         {
             get { return _loss; }
             set
@@ -58,8 +58,8 @@ namespace BudgetSys.Models
 
         public float yield { get; set; }
 
-        private float _costOfMetetial1;
-        public float costOfMeterial1
+        private double _costOfMetetial1;
+        public double costOfMeterial1
         {
             get
             {
@@ -75,8 +75,8 @@ namespace BudgetSys.Models
             }
         }
 
-        private float _finishedCost1;
-        public float finishedCost1
+        private double _finishedCost1;
+        public double finishedCost1
         {
             get
             {
@@ -92,12 +92,12 @@ namespace BudgetSys.Models
             }
         }
 
-        public float CMF1 { get; set; }
+        public double CMF1 { get; set; }
 
 
-        private float _total1;
+        private double _total1;
 
-        public float total1
+        public double total1
         {
             get
             {
@@ -112,8 +112,8 @@ namespace BudgetSys.Models
                 }
             }
         }
-        private float _costOfMetetial2;
-        public float costOfMeterial2
+        private double _costOfMetetial2;
+        public double costOfMeterial2
         {
             get
             {
@@ -129,8 +129,8 @@ namespace BudgetSys.Models
             }
         }
 
-        private float _finishedCost2;
-        public float finishedCost2
+        private double _finishedCost2;
+        public double finishedCost2
         {
             get
             {
@@ -146,12 +146,12 @@ namespace BudgetSys.Models
             }
         }
 
-        public float CMF2 { get; set; }
+        public double CMF2 { get; set; }
 
 
-        private float _total2;
+        private double _total2;
 
-        public float total2
+        public double total2
         {
             get
             {

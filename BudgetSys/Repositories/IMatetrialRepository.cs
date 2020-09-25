@@ -13,10 +13,11 @@ namespace BudgetSys.Repositories
     {
         object CreateViewModel(MetalBatch batch=null);
         ObservableCollection<MetalBatch> GetBatches();
-        void Save(object dataContext, MetalBatch currentBatch);
+        void Save(object dataContext);
         void Calculate(RawMaterial material);
-        object AddNewItem(int id, string batchNo);
-        void Delete(object dataContext, object material);
+        object AddNewItem(object dataContext);
+        void DeleteRecord(object dataContext, object material);
+        void DeleteBatch(object dataContext, MetalBatch batch);
         void AutoGenColumn(DataGridAutoGeneratingColumnEventArgs e);
         void RenameColumn(DataGridColumn column);
     }

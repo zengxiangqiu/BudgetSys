@@ -12,14 +12,14 @@ namespace BudgetSys.Models
         /// <summary>
         /// 净重
         /// </summary>
-        public float p_netWeigth { get; set; }
+        public double p_netWeigth { get; set; }
 
         /// <summary>
         ///口水公式Id 
         /// </summary>
 
-        private float _salivaId;
-        public float p_salivaId
+        private double _salivaId;
+        public double p_salivaId
         {
             get { return _salivaId; }
             set
@@ -35,7 +35,22 @@ namespace BudgetSys.Models
         /// <summary>
         /// 毛重
         /// </summary>
-        public float p_grossWeight { get; set; }
+
+        private double _grossWeight;
+
+        public double p_grossWeight
+        {
+            get { return _grossWeight; }
+            set
+            {
+                if (_grossWeight != value)
+                {
+                    _grossWeight = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
 
         /// <summary>
@@ -52,11 +67,41 @@ namespace BudgetSys.Models
         /// <summary>
         /// ME合计1
         /// </summary>
-        public float p_ME1 { get; set; }
+
+        private double _p_ME1;
+        public double p_ME1
+        {
+            get { return _p_ME1; }
+            set
+            {
+                if (_p_ME1 != value)
+                {
+                    _p_ME1 = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
 
         /// <summary>
         /// ME合计2
         /// </summary>
-        public float p_ME2 { get; set; }
+
+        private double _p_ME2;
+
+        public double p_ME2
+        {
+            get { return _p_ME2; }
+            set
+            {
+                if (_p_ME2 != value)
+                {
+                    _p_ME2 = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
+
+
     }
 }

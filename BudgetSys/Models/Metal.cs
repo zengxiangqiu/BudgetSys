@@ -11,9 +11,9 @@ namespace BudgetSys.Models
     public class Metal :RawMaterial, INotifyPropertyChanged
     {
 
-        private float _length;
+        private double _length;
 
-        public float m_length
+        public double m_length
         {
             get { return _length; }
             set {
@@ -21,12 +21,22 @@ namespace BudgetSys.Models
             }
         }
 
-        public float m_weigth { get; set; }
+        private double _m_weigth;
+
+        public double m_weigth
+        {
+            get { return _m_weigth; }
+            set
+            {
+                _m_weigth = value;
+                NotifyPropertyChanged();
+            }
+        }
 
 
-        private float _width;
+        private double _width;
 
-        public float m_width
+        public double m_width
         {
             get { return _width; }
             set
@@ -35,9 +45,9 @@ namespace BudgetSys.Models
             }
         }
 
-		public float m_thick { get; set; }
-        private float _volume;
-		public float m_volume
+		public double m_thick { get; set; }
+        private double _volume;
+		public double m_volume
         {
             get { return _volume; }
             set

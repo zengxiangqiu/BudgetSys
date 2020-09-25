@@ -12,24 +12,24 @@ using System.Windows.Data;
 
 namespace BudgetSys.Repositories
 {
-    public class MetalRepository : MatetiralRepository,IMatetrialRepository
+    public class MetalRepository : MatetiralRepository<Metal>,IMatetrialRepository
     {
         public MetalRepository():base(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/Batches/Metal/")
         {
             
         }
 
-        public object AddNewItem(object dataContext)
+        public new object AddNewItem(object dataContext)
         {
-            return base.AddNewItem<Metal>(dataContext);
+            return base.AddNewItem(dataContext);
         }
 
         public void AutoGenColumn(DataGridAutoGeneratingColumnEventArgs e)
         {
-            base.AutoGenColumns<Metal>(e);
+            base.AutoGenColumns(e);
         }
 
-        public override void Calculate(RawMaterial material)
+        public override void Calculate(MaterialBase material)
         {
             var metal = material as Metal;
 
@@ -70,24 +70,24 @@ namespace BudgetSys.Repositories
             }
         }
 
-        public object CreateViewModel(MetalBatch batch  = null)
+        public new object CreateViewModel(MetalBatch batch  = null)
         {
-            return CreateViewModel<Metal>(batch);
+            return base.CreateViewModel(batch);
         }
 
         public void DeleteRecord(object dataContext, object material)
         {
-            base.DeleteRecord<Metal>(dataContext, material as Metal);
+            base.DeleteRecord(dataContext, material as Metal);
         }
 
-        public void DeleteBatch(object dataContext, MetalBatch batch)
+        public new void DeleteBatch(object dataContext, MetalBatch batch)
         {
-            base.DeleteBatch<Metal>(dataContext, batch);
+            base.DeleteBatch(dataContext, batch);
         }
 
-        public ObservableCollection<MetalBatch> GetBatches()
+        public new ObservableCollection<MetalBatch> GetBatches()
         {
-            return base.GetBatches<Metal>();
+            return base.GetBatches();
         }
 
         public void RenameColumn(DataGridColumn column)
@@ -97,9 +97,9 @@ namespace BudgetSys.Repositories
             column.Header = config.Value.description;
         }
 
-        public void Save(object dataContext)
+        public new void Save(object dataContext)
         {
-            base.Save<Metal>(dataContext);
+            base.Save(dataContext);
         }
     }
 }

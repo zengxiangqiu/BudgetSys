@@ -8,33 +8,8 @@ using System.Threading.Tasks;
 
 namespace BudgetSys.Models
 {
-    public abstract class RawMaterial : INotifyPropertyChanged, IEditableObject
+    public abstract class RawMaterial : MaterialBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        // This method is called by the Set accessor of each property.  
-        // The CallerMemberName attribute that is applied to the optional propertyName  
-        // parameter causes the property name of the caller to be substituted as an argument.  
-        protected void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void BeginEdit()
-        {
-        }
-
-        public void EndEdit()
-        {
-        }
-
-        public void CancelEdit()
-        {
-        }
-
-        public int id { get; set; }
-
-        public string batchNo { get; set; }
         public string name { get; set; }
 
         public string picture { get; set; }

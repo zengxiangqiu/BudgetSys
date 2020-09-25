@@ -8,7 +8,7 @@ using BudgetSys.Models;
 
 namespace BudgetSys
 {
-    public class RawMaterialFactory<T> where T: RawMaterial
+    public class RawMaterialFactory<T> where T: MaterialBase
     {
 
         //public static ObservableCollection<T> Create(BatchType batchType) 

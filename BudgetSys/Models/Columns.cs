@@ -10,6 +10,7 @@ namespace BudgetSys.Models
     {
         public Dictionary<string, ColumnProp> Metal { get; set; }
         public Dictionary<string, ColumnProp> Plastic { get; set; }
+        public Dictionary<string, ColumnProp> PurchasedParts { get; set; }
     }
 
     public class ColumnProp

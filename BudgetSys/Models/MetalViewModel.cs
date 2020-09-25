@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace BudgetSys.Models
 {
-    public class MetalViewModel<T>: INotifyPropertyChanged where T : RawMaterial
+    public class MetalViewModel<T>: INotifyPropertyChanged where T : MaterialBase
     {
         public MetalViewModel()
        {

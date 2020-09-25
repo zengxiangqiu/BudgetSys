@@ -65,10 +65,12 @@
     <Compile Include="Converter\BatchConverter.cs" />
     <Compile Include="Models\Columns.cs" />
     <Compile Include="Models\ExchangeRate.cs" />
+    <Compile Include="Models\MaterialBase.cs" />
     <Compile Include="Models\Plastic.cs" />
     <Compile Include="Models\PlasticMaterial.cs" />
     <Compile Include="Models\PlasticSalivaId.cs" />
     <Compile Include="Models\PlasticTonnage.cs" />
+    <Compile Include="Models\PurchasedParts.cs" />
     <Compile Include="Models\RawMaterial.cs" />
     <Compile Include="Models\Sys.cs" />
     <Compile Include="RawMaterialFactory.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="Repositories\MatetiralRepository.cs" />
     <Compile Include="Repositories\MetalRepository.cs" />
     <Compile Include="Repositories\PlasticRepository.cs" />
+    <Compile Include="Repositories\PurchasedPartsRepository.cs" />
     <Compile Include="SaveWindow.xaml.cs">
       <DependentUpon>SaveWindow.xaml</DependentUpon>
     </Compile>

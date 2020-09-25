@@ -165,5 +165,31 @@
             "description": "合计(￥)",
             "order": 21
         }
-    }
+    },
+        "PurchasedParts": {
+            "id": {
+                "description": "序号",
+                "order": 0
+            },
+               "name": {
+                "description": "名称",
+                "order": 1
+            },
+             "qty": {
+                "description": "数量（PCS）",
+                "order": 2
+            },
+               "unitPrice": {
+                "description": "单价（元）",
+                "order": 3
+            },
+               "sum": {
+                "description": "合计（元）",
+                "order": 4
+            },
+               "remark": {
+                "description": "备注",
+                "order": 5
+            },
+          }
 }

@@ -12,7 +12,7 @@ using BudgetSys.Models;
 
 namespace BudgetSys.Repositories
 {
-    class PlasticRepository : MatetiralRepository, IMatetrialRepository
+    class PlasticRepository : MatetiralRepository<Plastic>, IMatetrialRepository
     {
         public PlasticRepository() : base(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/Batches/Plastic/")
         {
@@ -21,10 +21,10 @@ namespace BudgetSys.Repositories
 
         public void AutoGenColumn(DataGridAutoGeneratingColumnEventArgs e)
         {
-            base.AutoGenColumns<Plastic>(e);
+            base.AutoGenColumns(e);
         }
 
-        public override void Calculate(RawMaterial material)
+        public override void Calculate(MaterialBase material)
         {
             var plastic = material as Plastic;
 
@@ -86,24 +86,24 @@ namespace BudgetSys.Repositories
             }
         }
 
-        public object CreateViewModel(MetalBatch batch = null)
+        public new  object CreateViewModel(MetalBatch batch = null)
         {
-            return base.CreateViewModel<Plastic>(batch);
+            return base.CreateViewModel(batch);
         }
 
         public void DeleteRecord(object dataContext, object material)
         {
-            base.DeleteRecord<Plastic>(dataContext, material as Plastic);
+            base.DeleteRecord(dataContext, material as Plastic);
         }
 
-        public void DeleteBatch(object dataContext, MetalBatch batch)
+        public new void DeleteBatch(object dataContext, MetalBatch batch)
         {
-            base.DeleteBatch<Plastic>(dataContext, batch);
+            base.DeleteBatch(dataContext, batch);
         }
 
-        public ObservableCollection<MetalBatch> GetBatches()
+        public new ObservableCollection<MetalBatch> GetBatches()
         {
-            return base.GetBatches<Plastic>();
+            return base.GetBatches();
         }
 
         public void RenameColumn(DataGridColumn column)
@@ -113,14 +113,14 @@ namespace BudgetSys.Repositories
             column.Header = config.Value.description;
         }
 
-        public void Save(object dataContext)
+        public new void Save(object dataContext)
         {
-            base.Save<Plastic>(dataContext);
+            base.Save(dataContext);
         }
 
-        public object AddNewItem(object dataContext)
+        public new  object AddNewItem(object dataContext)
         {
-            return base.AddNewItem<Plastic>(dataContext);
+            return base.AddNewItem(dataContext);
         }
     }
 }

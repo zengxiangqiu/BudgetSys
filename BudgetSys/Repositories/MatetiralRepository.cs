@@ -11,7 +11,7 @@ using System.Windows.Data;
 
 namespace BudgetSys.Repositories
 {
-    public abstract class MatetiralRepository
+    public abstract class MatetiralRepository<T> where T: MaterialBase, new()
     {
         public MatetiralRepository(string basePath)
         {
@@ -19,7 +19,7 @@ namespace BudgetSys.Repositories
         }
 
         protected readonly string metalBasePath = "";
-        public virtual void Save<T>(object dataContext) where T: RawMaterial
+        public virtual void Save(object dataContext) 
         {
             var viewModel = dataContext as MetalViewModel<T>;
             var metals = Newtonsoft.Json.JsonConvert.SerializeObject(viewModel.Details);
@@ -52,18 +52,18 @@ namespace BudgetSys.Repositories
             }
         }
 
-        protected virtual void DeleteBatch<T>(object dataContext, MetalBatch batch) where T : RawMaterial
+        protected virtual void DeleteBatch(object dataContext, MetalBatch batch)
         {
             File.Delete(metalBasePath + batch.batchNo + ".json");
             (dataContext as MetalViewModel<T>).Batches.Remove(batch);
         }
 
-        protected virtual void DeleteRecord<T>(object dataContext, T material) where T : RawMaterial
+        protected virtual void DeleteRecord(object dataContext, T material)
         {
             (dataContext as MetalViewModel<T>).Details.Remove(material);
         }
 
-        protected virtual ObservableCollection<MetalBatch> GetBatches<T>() where T : RawMaterial
+        protected virtual ObservableCollection<MetalBatch> GetBatches() 
         {
             var batches = new DirectoryInfo(metalBasePath).GetFiles("*.json");
             var batchesList = new ObservableCollection<MetalBatch>(batches.Select(x => new MetalBatch
@@ -75,7 +75,7 @@ namespace BudgetSys.Repositories
             return batchesList;
         }
 
-        protected object CreateViewModel<T>(MetalBatch batch)where T:RawMaterial
+        protected object CreateViewModel(MetalBatch batch)
         {
             ObservableCollection<T> details;
             try
@@ -88,13 +88,13 @@ namespace BudgetSys.Repositories
             }
             return new MetalViewModel<T>
             {
-                Batches = GetBatches<T>(),
+                Batches = GetBatches(),
                 Details = details,
                 CurrentBatch = batch??new MetalBatch { batchType = typeof(T) == typeof(Metal) ? BatchType.Metal : BatchType.Plastic }
             };
         }
 
-        protected virtual void AutoGenColumns<T>(DataGridAutoGeneratingColumnEventArgs e)
+        protected virtual void AutoGenColumns(DataGridAutoGeneratingColumnEventArgs e)
         {
             if (e.PropertyName == "id")
             {
@@ -148,12 +148,9 @@ namespace BudgetSys.Repositories
             }
         }
 
-        public virtual void Calculate(RawMaterial material)
-        {
+        public abstract void Calculate(MaterialBase material);
 
-        }
-
-        protected virtual object AddNewItem<T>(object dataContext) where T:RawMaterial, new()
+        protected virtual object AddNewItem(object dataContext) 
         {
             var batchNo = (dataContext as MetalViewModel<T>).CurrentBatch?.batchNo;
             var metal = new T

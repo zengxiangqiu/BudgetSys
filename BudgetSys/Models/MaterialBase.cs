@@ -8,25 +8,8 @@ using System.Threading.Tasks;
 
 namespace BudgetSys.Models
 {
-    public class MetalBatch: INotifyPropertyChanged
+    public abstract class MaterialBase: INotifyPropertyChanged, IEditableObject
     {
-        //public int id { get; set; }
-        public MetalBatch()
-        {
-            batchNo = "";
-        }
-
-        public string batchNo
-        {
-            get { return _batchNo; }
-            set {
-                _batchNo = value;
-                NotifyPropertyChanged();
-            }
-        }
-        private string _batchNo;
-        public BatchType batchType { get; set; }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         // This method is called by the Set accessor of each property.  
@@ -37,13 +20,20 @@ namespace BudgetSys.Models
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-    }
+        public void BeginEdit()
+        {
+        }
 
-    public enum BatchType
-    {
-        Metal,
-        Plastic,
-        PurchasedParts
+        public void EndEdit()
+        {
+        }
 
+        public void CancelEdit()
+        {
+        }
+
+        public int id { get; set; }
+
+        public string batchNo { get; set; }
     }
 }

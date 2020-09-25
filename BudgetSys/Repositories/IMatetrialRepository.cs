@@ -14,7 +14,7 @@ namespace BudgetSys.Repositories
         object CreateViewModel(MetalBatch batch=null);
         ObservableCollection<MetalBatch> GetBatches();
         void Save(object dataContext);
-        void Calculate(RawMaterial material);
+        void Calculate(MaterialBase material);
         object AddNewItem(object dataContext);
         void DeleteRecord(object dataContext, object material);
         void DeleteBatch(object dataContext, MetalBatch batch);

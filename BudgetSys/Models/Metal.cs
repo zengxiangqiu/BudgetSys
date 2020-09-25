@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BudgetSys.Models
 {
-    public class Metal :RawMaterial, INotifyPropertyChanged
+    public class Metal : RawMaterial, INotifyPropertyChanged
     {
 
         private double _length;

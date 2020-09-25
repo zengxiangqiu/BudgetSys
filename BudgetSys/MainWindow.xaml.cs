@@ -30,7 +30,7 @@ namespace BudgetSys
     {
         IniData data;
 
-        private RawMaterial editMetal;
+        private MaterialBase editMetal;
 
         private IMatetrialRepository matetrialRepository;
 
@@ -55,7 +55,7 @@ namespace BudgetSys
 
         private void DataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
-            editMetal = e.Row.Item as RawMaterial;
+            editMetal = e.Row.Item as MaterialBase;
             //editMetal.EndEdit();
         }
 
@@ -152,11 +152,20 @@ namespace BudgetSys
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if ((BatchType)((e.Source as ComboBox).SelectedItem) == BatchType.Metal)
-                matetrialRepository = new MetalRepository();
-            else
-                matetrialRepository = new PlasticRepository();
-
+            switch ((BatchType)((e.Source as ComboBox).SelectedItem))
+            {
+                case BatchType.Metal:
+                    matetrialRepository = new MetalRepository();
+                    break;
+                case BatchType.Plastic:
+                    matetrialRepository = new PlasticRepository();
+                    break;
+                case BatchType.PurchasedParts:
+                    matetrialRepository = new PurchasedPartsRepository();
+                    break;
+                default:
+                    break;
+            }
             this.DataContext = matetrialRepository.CreateViewModel();
             editMetal = null;
         }

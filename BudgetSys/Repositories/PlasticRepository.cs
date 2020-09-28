@@ -122,5 +122,20 @@ namespace BudgetSys.Repositories
         {
             return base.AddNewItem(dataContext);
         }
+
+        public override IEnumerable<object> Materials
+        {
+            get { return Sys.plasticMaterials; }
+        }
+
+        public override IEnumerable<object> Tonnages
+        {
+            get { return Sys.plasticTonnages; }
+        }
+
+        public override BatchType GetBatchType()
+        {
+            return BatchType.Plastic;
+        }
     }
 }

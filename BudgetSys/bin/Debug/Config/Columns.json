@@ -192,4 +192,75 @@
                 "order": 5
             },
           }
+          ,
+        "Accessories": {
+            "id": {
+                "description": "序号",
+                "order": 0
+            },
+               "name": {
+                "description": "名称",
+                "order": 1
+            },
+             "qty": {
+                "description": "数量（PCS）",
+                "order": 2
+            },
+               "unitPrice": {
+                "description": "单价（元）",
+                "order": 3
+            },
+               "sum": {
+                "description": "合计（元）",
+                "order": 4
+            },
+               "remark": {
+                "description": "备注",
+                "order": 5
+            },
+          }
+          
+          ,
+        "ProjectCost": {
+            "id": {
+                "description": "序号",
+                "order": 0
+            },
+               "project": {
+                "description": "项目",
+                "order": 1
+            },
+             "details": {
+                "description": "明细",
+                "order": 2
+            },
+               "cost": {
+                "description": "费用（圆）",
+                "order": 3
+            },
+               "remark": {
+                "description": "备注",
+                "order": 4
+            }
+          }
+          
+            ,
+        "CostAdjustment": {
+            "id": {
+                "description": "序号",
+                "order": 0
+            },
+               "costAdjustment": {
+                "description": "材料成本调整区",
+                "order": 1
+            },
+             "RMB": {
+                "description": " (RMB/kg)",
+                "order": 2
+            },
+               "US": {
+                "description": " (US$/kg)",
+                "order": 3
+            }
+          }
 }

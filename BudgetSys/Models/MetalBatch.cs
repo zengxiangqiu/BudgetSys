@@ -43,7 +43,9 @@ namespace BudgetSys.Models
     {
         Metal,
         Plastic,
-        PurchasedParts
-
+        PurchasedParts,
+        Accessories,
+        ProjectCost,
+        CostAdjustment
     }
 }

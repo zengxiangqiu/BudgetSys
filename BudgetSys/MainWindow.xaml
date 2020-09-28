@@ -50,6 +50,7 @@
             <TextBox Width="80px" Margin="4,4" Text="{Binding Path=BatchInput, Mode=TwoWay}"></TextBox>
             <Button Width="60px"  Height="20px" Margin="4,4" Click="BtnNew_Click" Name="btnNew">新增</Button>
             <Button Width="60px"  Height="20px" Margin="4,4" Click="btnSave_Click">保存</Button>
+            <Button Width="60px"  Height="20px" Margin="4,4" Click="btnExport_Click">导出</Button>
         </StackPanel>
         <GroupBox Header="批次" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DockPanel >

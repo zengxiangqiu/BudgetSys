@@ -44,7 +44,7 @@ namespace BudgetSys.Repositories
             }
             //保存
             File.WriteAllText(metalBasePath + batchNo + ".json", metals);
-            var batch = new MetalBatch { batchNo = batchNo, batchType = typeof(T) == typeof(Metal) ? BatchType.Metal : BatchType.Plastic };
+            var batch = new MetalBatch { batchNo = batchNo, batchType  =GetBatchType()};
             if (viewModel.Batches.Where(x => x.batchNo == batch.batchNo).Count() == 0)
             {
                 viewModel.Batches.Add(batch);
@@ -63,13 +63,13 @@ namespace BudgetSys.Repositories
             (dataContext as MetalViewModel<T>).Details.Remove(material);
         }
 
-        protected virtual ObservableCollection<MetalBatch> GetBatches() 
+        public virtual ObservableCollection<MetalBatch> GetBatches() 
         {
             var batches = new DirectoryInfo(metalBasePath).GetFiles("*.json");
             var batchesList = new ObservableCollection<MetalBatch>(batches.Select(x => new MetalBatch
             {
                 batchNo = x.Name.Replace(".json", ""),
-                batchType  = typeof(T) == typeof(Metal) ? BatchType.Metal : BatchType.Plastic,
+                batchType =GetBatchType()
             }));
 
             return batchesList;
@@ -86,11 +86,12 @@ namespace BudgetSys.Repositories
             {
                 details = new ObservableCollection<T>();
             }
+          
             return new MetalViewModel<T>
             {
                 Batches = GetBatches(),
                 Details = details,
-                CurrentBatch = batch??new MetalBatch { batchType = typeof(T) == typeof(Metal) ? BatchType.Metal : BatchType.Plastic }
+                CurrentBatch = batch??new MetalBatch { batchType = GetBatchType() }
             };
         }
 
@@ -110,14 +111,9 @@ namespace BudgetSys.Repositories
                 if (e.PropertyName == "materialId")
                 {
                     var templateColumn = new DataGridComboBoxColumn();
-                    if (typeof(T) == typeof(Metal))
-                    {
-                        templateColumn.ItemsSource = Sys.metalMaterials;
-                    }
-                    else
-                    {
-                        templateColumn.ItemsSource = Sys.plasticMaterials;
-                    }
+
+                    templateColumn.ItemsSource = Materials;
+
                     templateColumn.DisplayMemberPath = "name";
                     templateColumn.SelectedValuePath = "id";
                     var binding = new Binding("materialId");
@@ -128,14 +124,7 @@ namespace BudgetSys.Repositories
                 else if (e.PropertyName == "tonnageId")
                 {
                     var templateColumn = new DataGridComboBoxColumn();
-                    if (typeof(T) == typeof(Metal))
-                    {
-                        templateColumn.ItemsSource = Sys.metalTonnages;
-                    }
-                    else
-                    {
-                        templateColumn.ItemsSource = Sys.plasticTonnages;
-                    }
+                    templateColumn.ItemsSource = Tonnages;
                     templateColumn.DisplayMemberPath = "tonnage";
                     templateColumn.SelectedValuePath = "id";
                     var binding = new Binding("tonnageId");
@@ -160,6 +149,12 @@ namespace BudgetSys.Repositories
             };
             return metal;
         }
+
+        public abstract IEnumerable<object> Materials { get; }
+
+        public abstract IEnumerable<object> Tonnages { get; }
+
+        public abstract BatchType GetBatchType();
 
     }
 }

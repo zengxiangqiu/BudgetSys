@@ -66,5 +66,14 @@ namespace BudgetSys.Repositories
         {
             return base.AddNewItem(dataContext);
         }
+
+        public override IEnumerable<object> Materials => throw new NotImplementedException();
+
+        public override IEnumerable<object> Tonnages => throw new NotImplementedException();
+
+        public override BatchType GetBatchType()
+        {
+            return BatchType.PurchasedParts;
+        }
     }
 }

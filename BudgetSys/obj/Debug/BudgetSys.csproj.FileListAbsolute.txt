@@ -42,4 +42,16 @@ D:\Projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.xml
 D:\Projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.g.cs
 D:\Projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.baml
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\GeneratedInternalTypeHelper.g.cs
-D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.csprojAssemblyReference.cache
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\BouncyCastle.Crypto.dll
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\ICSharpCode.SharpZipLib.dll
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\NPOI.dll
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\NPOI.OOXML.dll
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\NPOI.OpenXml4Net.dll
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\NPOI.OpenXmlFormats.dll
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\BouncyCastle.Crypto.xml
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\ICSharpCode.SharpZipLib.pdb
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\ICSharpCode.SharpZipLib.xml
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\ExportWindow.g.cs
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\ExportWindow.baml
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\FileSelector.g.cs
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\FileSelector.baml

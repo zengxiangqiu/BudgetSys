@@ -163,6 +163,15 @@ namespace BudgetSys
                 case BatchType.PurchasedParts:
                     matetrialRepository = new PurchasedPartsRepository();
                     break;
+                case BatchType.Accessories:
+                    matetrialRepository = new AccessoriesRepository();
+                    break;
+                case BatchType.ProjectCost:
+                    matetrialRepository = new ProjectCostRepository();
+                    break;
+                case BatchType.CostAdjustment:
+                    matetrialRepository = new CostAdjustmentRepository();
+                    break;
                 default:
                     break;
             }
@@ -248,6 +257,12 @@ namespace BudgetSys
             masterForm.ShowDialog();
 
 
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            var eForm = new ExportExcel();
+            eForm.ShowDialog();
         }
     }
 }

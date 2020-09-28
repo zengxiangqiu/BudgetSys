@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Npoi.Mapper.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -34,6 +36,8 @@ namespace BudgetSys.Models
 
         public int id { get; set; }
 
+        [Ignore]
         public string batchNo { get; set; }
+
     }
 }

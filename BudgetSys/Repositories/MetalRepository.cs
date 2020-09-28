@@ -101,5 +101,20 @@ namespace BudgetSys.Repositories
         {
             base.Save(dataContext);
         }
+
+        public override IEnumerable<object> Materials
+        {
+            get { return Sys.metalMaterials; }
+        }
+
+        public override IEnumerable<object> Tonnages
+        {
+            get { return Sys.metalTonnages; }
+        }
+
+        public override BatchType GetBatchType()
+        {
+            return BatchType.Metal;
+        }
     }
 }

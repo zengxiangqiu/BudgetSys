@@ -11,6 +11,9 @@ namespace BudgetSys.Models
         public Dictionary<string, ColumnProp> Metal { get; set; }
         public Dictionary<string, ColumnProp> Plastic { get; set; }
         public Dictionary<string, ColumnProp> PurchasedParts { get; set; }
+        public Dictionary<string, ColumnProp> Accessories { get; set; }
+        public Dictionary<string, ColumnProp> ProjectCost { get; set; }
+        public Dictionary<string, ColumnProp> CostAdjustment { get; set; }
     }
 
     public class ColumnProp

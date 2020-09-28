@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Npoi.Mapper.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -57,5 +58,7 @@ namespace BudgetSys.Models
             }
         }
 		public int m_workStation { get; set; }
-	}
+
+
+    }
 }

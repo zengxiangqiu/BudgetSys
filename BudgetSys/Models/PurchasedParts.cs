@@ -33,5 +33,6 @@ namespace BudgetSys.Models
             get { return _remark; }
             set { _remark = value; NotifyPropertyChanged(); }
         }
+
     }
 }

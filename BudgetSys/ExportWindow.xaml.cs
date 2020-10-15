@@ -56,6 +56,9 @@ namespace BudgetSys
 
                 var mapper = new Mapper();
 
+
+
+
                 Put<Metal>(mapper, evm.Metals, BatchType.Metal.ToString(), Sys.Columns.Metal);
                 Put<Plastic>(mapper, evm.Platics, BatchType.Plastic.ToString(), Sys.Columns.Plastic);
                 Put<ProjectCost>(mapper, evm.ProjectCost, BatchType.ProjectCost.ToString(), Sys.Columns.ProjectCost);
@@ -65,7 +68,7 @@ namespace BudgetSys
                 try
                 {
                     mapper.Save(saveFileDialog.FileName);
-                    MessageBox.Show("保存成功 文件路径:"+saveFileDialog.FileName,  "提示");
+                    MessageBox.Show("保存成功 文件路径:" + saveFileDialog.FileName, "提示");
                 }
                 catch (Exception ex)
                 {
@@ -77,9 +80,9 @@ namespace BudgetSys
 
         private void Put<T>(Mapper mapper, ObservableCollection<ExportFile> files, string materialType, Dictionary<string, ColumnProp> colsJson)
         {
-            foreach (var item in colsJson)
+            foreach (var col in colsJson)
             {
-                mapper.Map<T>(item.Value.description, item.Key);
+                mapper.Map<T>(col.Value.description, col.Key);
             }
 
             foreach (ExportFile item in files.Where(x => x.Include == true))
@@ -92,7 +95,24 @@ namespace BudgetSys
                      {
                          try
                          {
-                             columns.Where(x => x.Key.Name == col.Key).First().Value.Index = col.Value.order;
+                              columns.Where(x => x.Key.Name == col.Key).ForEach(kp=> {
+                                  if (col.Value.saveOrder < 0)
+                                  {
+                                      var ignoreAttribute = new Npoi.Mapper.Attributes.ColumnAttribute
+                                      {
+                                          Ignored = true
+                                      };
+                                      ignoreAttribute.Property = kp.Key;
+                                      ignoreAttribute.MergeTo(columns);
+                                      kp.Value.Index = -1;
+                                  }
+                                  else
+                                  {
+                                      kp.Value.Index = col.Value.saveOrder;
+                                  }
+                              }) ;
+
+                       
                          }
                          catch (Exception)
                          {

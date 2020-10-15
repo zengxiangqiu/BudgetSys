@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BudgetSys.Models
 {
-   public class MetalMaterial
+   public class MetalMaterial:MasterBase
     {
-        public int id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
         public float cost { get; set; }

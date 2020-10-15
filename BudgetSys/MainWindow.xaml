@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BudgetSys"
         xmlns:converter="clr-namespace:BudgetSys.Converter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="550" Width="1436.206">
+        Title="Lenovo ODM Cost Model analysis system" Height="550" Width="1436.206" Icon="Images/Logo.png">
     <Grid>
         <Grid.Resources>
             <converter:BatchConverter x:Key="batchConverter"/>
@@ -54,8 +54,11 @@
         </StackPanel>
         <GroupBox Header="批次" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
             <DockPanel >
+                <Image Source="Images/Logo.png"  Stretch="Fill"  Height="100" DockPanel.Dock="Top"></Image>
+
                 <TextBox Margin="0,2,0,5" DockPanel.Dock="Top" TextChanged="TextBox_TextChanged"></TextBox>
                 <ListView  
+                    
                 Name="lvBatch"
                 HorizontalAlignment="Stretch"  
                        VerticalAlignment="Stretch" 

@@ -40,9 +40,9 @@ namespace BudgetSys.Repositories
                 //volume
                 metal.m_volume = Math.Round((metal.m_length + 10) * (metal.m_width + 10) * metal.m_thick,2);
                 //m_weigth
-                metal.m_weigth = Math.Round(metal.m_volume * 0.00000785,2);
+                metal.m_weigth = Math.Round(metal.m_volume * 0.00000785,3);
                 //loss
-                metal.loss = Math.Round(metal.m_weigth * 0.03, 2);
+                metal.loss = Math.Round(metal.m_weigth * 0.03, 4);
 
                 // 加工成本
                 metal.finishedCost1 = Math.Round(metal.m_workStation * metal.qty * t_cost,2);
@@ -90,11 +90,14 @@ namespace BudgetSys.Repositories
             return base.GetBatches();
         }
 
-        public void RenameColumn(DataGridColumn column)
+        public void RenameColumn(ObservableCollection<DataGridColumn>  columns)
         {
-            var config = Sys.Columns.Metal.Where(x => x.Key == column.Header.ToString()).First();
-            column.DisplayIndex = config.Value.order;
-            column.Header = config.Value.description;
+            Sys.Columns.Metal.OrderBy(x => x.Value.order).ToList().ForEach(x =>
+            {
+                var col = columns.Where(c => c.Header.ToString() == x.Key).First();
+                col.DisplayIndex = x.Value.order;
+                col.Header = x.Value.description;
+            });
         }
 
         public new void Save(object dataContext)
@@ -115,6 +118,11 @@ namespace BudgetSys.Repositories
         public override BatchType GetBatchType()
         {
             return BatchType.Metal;
+        }
+
+        public  void Calculate(MaterialBase materialBase, DataGridColumn column, object value)
+        {
+            base.Calculate(materialBase, column, value, Sys.Columns.Metal);
         }
     }
 }

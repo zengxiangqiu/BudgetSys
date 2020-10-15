@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BudgetSys.Models
 {
-    public class PlasticSalivaId
+    public class PlasticSalivaId:MasterBase
     {
-        public int id { get; set; }
         public int scope { get; set; }
         public float percent { get; set; }
     }

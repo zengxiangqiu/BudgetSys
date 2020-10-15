@@ -13,5 +13,13 @@ namespace BudgetSys
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            SplashScreen s = new SplashScreen("/Images/Startup.png");
+            s.Show(false);
+            System.Threading.Thread.Sleep(2000);
+            s.Close(new TimeSpan(0, 0, 3));
+            base.OnStartup(e);
+        }
     }
 }

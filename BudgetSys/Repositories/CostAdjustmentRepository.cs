@@ -44,11 +44,14 @@ namespace BudgetSys.Repositories
             return BatchType.CostAdjustment;
         }
 
-        public void RenameColumn(DataGridColumn column)
+        public void RenameColumn(ObservableCollection<DataGridColumn> columns)
         {
-            var config = Sys.Columns.CostAdjustment.Where(x => x.Key == column.Header.ToString()).First();
-            column.DisplayIndex = config.Value.order;
-            column.Header = config.Value.description;
+            Sys.Columns.CostAdjustment.OrderBy(x => x.Value.order).ToList().ForEach(x =>
+            {
+                var col = columns.Where(c => c.Header.ToString() == x.Key).First();
+                col.DisplayIndex = x.Value.order;
+                col.Header = x.Value.description;
+            });
         }
 
         object IMatetrialRepository.AddNewItem(object dataContext)
@@ -69,6 +72,11 @@ namespace BudgetSys.Repositories
         ObservableCollection<MetalBatch> IMatetrialRepository.GetBatches()
         {
             return base.GetBatches();
+        }
+
+        public void Calculate(MaterialBase materialBase, DataGridColumn column, object value)
+        {
+            base.Calculate(materialBase, column, value, Sys.Columns.CostAdjustment);
         }
     }
 }

@@ -15,10 +15,11 @@ namespace BudgetSys.Repositories
         ObservableCollection<MetalBatch> GetBatches();
         void Save(object dataContext);
         void Calculate(MaterialBase material);
+        void Calculate(MaterialBase materialBase, DataGridColumn column, object value);
         object AddNewItem(object dataContext);
         void DeleteRecord(object dataContext, object material);
         void DeleteBatch(object dataContext, MetalBatch batch);
         void AutoGenColumn(DataGridAutoGeneratingColumnEventArgs e);
-        void RenameColumn(DataGridColumn column);
+        void RenameColumn(ObservableCollection<DataGridColumn> columns);
     }
 }

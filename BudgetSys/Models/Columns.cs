@@ -20,5 +20,6 @@ namespace BudgetSys.Models
     {
         public string description { get; set; }
         public int  order { get; set; }
+        public int saveOrder { get; set; } = -1;
     }
 }

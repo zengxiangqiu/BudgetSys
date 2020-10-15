@@ -7,7 +7,7 @@
     <ProjectGuid>{D1B37CC4-B16B-4A83-A5B6-D805A6BE4DB7}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>BudgetSys</RootNamespace>
-    <AssemblyName>BudgetSys</AssemblyName>
+    <AssemblyName>Lenovo</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -35,7 +35,20 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug01|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug01\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
       <HintPath>packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
     </Reference>
@@ -53,7 +66,7 @@
     </Reference>
     <Reference Include="Npoi.Mapper, Version=3.5.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Npoi.Mapper.dll</HintPath>
+      <HintPath>bin\Debug01\Npoi.Mapper.dll</HintPath>
     </Reference>
     <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
       <HintPath>packages\NPOI.2.5.1\lib\net45\NPOI.OOXML.dll</HintPath>
@@ -67,6 +80,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -95,9 +109,11 @@
     <Compile Include="Models\Accessories.cs" />
     <Compile Include="Models\Columns.cs" />
     <Compile Include="Models\CostAdjustment.cs" />
+    <Compile Include="Models\DataGridHelper.cs" />
     <Compile Include="Models\ExchangeRate.cs" />
     <Compile Include="Models\ExportFile.cs" />
     <Compile Include="Models\ExportViewModel.cs" />
+    <Compile Include="Models\MasterBase.cs" />
     <Compile Include="Models\MaterialBase.cs" />
     <Compile Include="Models\Plastic.cs" />
     <Compile Include="Models\PlasticMaterial.cs" />
@@ -115,8 +131,8 @@
     <Compile Include="Repositories\PlasticRepository.cs" />
     <Compile Include="Repositories\ProjectCostRepository.cs" />
     <Compile Include="Repositories\PurchasedPartsRepository.cs" />
-    <Compile Include="SaveWindow.xaml.cs">
-      <DependentUpon>SaveWindow.xaml</DependentUpon>
+    <Compile Include="MasterWindow.xaml.cs">
+      <DependentUpon>MasterWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="ExportWindow.xaml">
       <SubType>Designer</SubType>
@@ -138,7 +154,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="SaveWindow.xaml">
+    <Page Include="MasterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,9 +179,32 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Batches\Accessories\default.json" />
+    <None Include="Batches\Accessories\辅料.json" />
+    <None Include="Batches\CostAdjustment\default.json" />
+    <None Include="Batches\CostAdjustment\成本调整.json" />
+    <None Include="Batches\Metal\测试批次.json" />
+    <None Include="Batches\Metal\计划1.json" />
+    <None Include="Batches\Metal\计划2.json" />
+    <None Include="Batches\Plastic\塑料加工 v1.0.0.json" />
+    <None Include="Batches\Plastic\塑料加工-备份.json" />
+    <None Include="Batches\Plastic\塑料加工-导出.json" />
+    <None Include="Batches\Plastic\塑料加工-测试.json" />
+    <None Include="Batches\ProjectCost\default.json" />
+    <None Include="Batches\ProjectCost\成本.json" />
+    <None Include="Batches\PurchasedParts\default.json" />
+    <None Include="Batches\PurchasedParts\test.json" />
+    <None Include="Batches\PurchasedParts\外购标准件.json" />
+    <None Include="Config\Columns.json" />
+    <None Include="Config\ExchangeRate.json" />
+    <None Include="Config\MetalMaterial.json" />
+    <None Include="Config\MetalTonnage.json" />
+    <None Include="Config\PlasticMaterial.json" />
+    <None Include="Config\PlasticSalivaId.json" />
+    <None Include="Config\PlasticTonnage.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -174,6 +213,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Startup.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Logo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

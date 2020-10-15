@@ -19,7 +19,16 @@ namespace BudgetSys.Models
         /// <summary>
         /// 费用（圆）	
         /// </summary>
-        public string cost { get; set; }
+        private string _cost;
+        public string cost
+        {
+            get { return _cost; }
+            set
+            {
+                _cost = value;
+                NotifyPropertyChanged();
+            }
+        }
         /// <summary>
         /// 备注
         /// </summary>

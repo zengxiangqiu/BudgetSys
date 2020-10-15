@@ -11,4 +11,9 @@ namespace BudgetSys.Models
         public bool Include { get; set; }
         public string fileName { get; set; }
     }
+
+    public class ExportFormat
+    {
+
+    }
 }

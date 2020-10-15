@@ -50,11 +50,14 @@ namespace BudgetSys.Repositories
             return base.GetBatches();
         }
 
-        public void RenameColumn(DataGridColumn column)
+        public void RenameColumn(ObservableCollection<DataGridColumn> columns)
         {
-            var config = Sys.Columns.PurchasedParts.Where(x => x.Key == column.Header.ToString()).First();
-            column.DisplayIndex = config.Value.order;
-            column.Header = config.Value.description;
+            Sys.Columns.PurchasedParts.OrderBy(x => x.Value.order).ToList().ForEach(x =>
+            {
+                var col = columns.Where(c => c.Header.ToString() == x.Key).First();
+                col.DisplayIndex = x.Value.order;
+                col.Header = x.Value.description;
+            });
         }
 
         public new void Save(object dataContext)
@@ -74,6 +77,11 @@ namespace BudgetSys.Repositories
         public override BatchType GetBatchType()
         {
             return BatchType.PurchasedParts;
+        }
+
+        public void Calculate(MaterialBase materialBase, DataGridColumn column, object value)
+        {
+            base.Calculate(materialBase, column, value, Sys.Columns.PurchasedParts);
         }
     }
 }

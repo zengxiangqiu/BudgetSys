@@ -1,0 +1,100 @@
+[
+    {
+        "costAdjustment": "GI(SGCC)",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 0,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "SUS",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 1,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "SPTE(TIN)",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 2,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "NETTING",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 3,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "ABS ",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 4,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "Rubber",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 5,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "PC",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 6,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "PMMA",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 7,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "PC+ABS",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 8,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "ABS+PMMA",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 9,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "POM",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 10,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "Al1050(冲压级)",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 11,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "Al5052(冲压级)",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 12,
+        "batchNo": ""
+    },
+    {
+        "costAdjustment": "Al5052(压铸级)",
+        "RMB": 0.0,
+        "US": 0.0,
+        "id": 13,
+        "batchNo": ""
+    }
+]

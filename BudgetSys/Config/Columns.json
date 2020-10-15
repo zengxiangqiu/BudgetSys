@@ -1,0 +1,289 @@
+{
+    "Plastic": {
+        "id": {
+            "description": "序号",
+            "order": 0
+        },
+           "name": {
+            "description": "名称",
+            "order": 1,
+            "saveOrder": 0
+        },
+           "picture": {
+            "description": "零件图片",
+            "order": 2
+        },
+           "materialId": {
+            "description": "材料",
+            "order": 3
+        },
+           "qty": {
+            "description": "件数",
+            "order": 5
+        },
+           "p_netWeigth": {
+            "description": "净重(g)",
+            "order": 4
+        },
+           "p_salivaId": {
+            "description": "口水(g)",
+            "order": 6
+        },
+         "p_grossWeight": {
+            "description": "毛重",
+            "order": 7
+        },
+         "loss": {
+            "description": "损耗（kg）",
+            "order": 9
+        },
+         "p_cavity": {
+            "description": "模穴",
+            "order": 8
+        },
+         "p_cycle": {
+            "description": "周期",
+            "order": 10
+        },
+   
+         "tonnageId": {
+            "description": "机台吨位",
+            "order": 11
+        },
+        "yield": {
+            "description": "良率(%)",
+            "order": 12
+        }, "costOfMeterial1": {
+            "description": "材料成本(￥)",
+            "order": 13
+        }, "finishedCost1": {
+            "description": "加工成本(￥)",
+            "order": 15
+        }, "p_ME1": {
+            "description": "ME合计",
+            "order": 14,
+            "saveOrder": 1
+        }, "CMF1": {
+            "description": "CMF(￥)",
+            "order": 16,
+            "saveOrder": 2
+        }, "total1": {
+            "description": "合计(￥)",
+            "order": 17,
+            "saveOrder": 3
+        },  "costOfMeterial2": {
+            "description": "材料成本($)",
+            "order": 18
+        }, "finishedCost2": {
+            "description": "加工成本($)",
+            "order": 19
+        }, "p_ME2": {
+            "description": "ME合计",
+            "order": 20,
+            "saveOrder": 4
+        }, "CMF2": {
+            "description": "CMF($)",
+            "order": 21,
+            "saveOrder": 5
+        }, "total2": {
+            "description": "合计($)",
+            "order": 22,
+            "saveOrder": 6
+        }
+        
+    },
+    "Metal": {
+          "id": {
+            "description": "序号",
+            "order": 0
+        },
+           "name": {
+            "description": "名称",
+            "order": 1,
+            "saveOrder": 0
+        },
+           "picture": {
+            "description": "零件图片",
+            "order": 2
+        },
+           "materialId": {
+            "description": "材料",
+            "order": 3
+        },
+           "qty": {
+            "description": "件数",
+            "order": 4
+        },
+           "m_length": {
+            "description": "长",
+            "order": 5
+        },
+           "m_width": {
+            "description": "宽",
+            "order": 6
+        },
+         "m_thick": {
+            "description": "厚",
+            "order": 7
+        },
+         "m_volume": {
+            "description": "体积",
+            "order": 8
+        },
+         "m_weigth": {
+            "description": "重量（kg）",
+            "order": 9
+        },
+         "loss": {
+            "description": "损耗（kg）",
+            "order": 10
+        },
+         "tonnageId": {
+            "description": "机台吨位",
+            "order": 11
+        },
+         "m_workStation": {
+            "description": "工站数",
+            "order": 12
+        }, "yield": {
+            "description": "良率(%)",
+            "order": 13
+        }, "costOfMeterial1": {
+            "description": "材料成本(￥)",
+            "order": 14
+        }, "finishedCost1": {
+            "description": "加工成本(￥)",
+            "order": 15
+        }, "CMF1": {
+            "description": "CMF(￥)",
+            "order": 16,
+            "saveOrder": 1
+        }, "total1": {
+            "description": "合计(￥)",
+            "order": 17,
+            "saveOrder": 2
+        },  "costOfMeterial2": {
+            "description": "材料成本($)",
+            "order": 18,
+            "saveOrder": 3
+        }, "finishedCost2": {
+            "description": "加工成本($)",
+            "order": 19,
+            "saveOrder": 4
+        }, "CMF2": {
+            "description": "CMF($)",
+            "order": 20,
+            "saveOrder": 5
+        }, "total2": {
+            "description": "合计($)",
+            "order": 21,
+            "saveOrder": 6
+        }
+    },
+        "PurchasedParts": {
+            "id": {
+                "description": "序号",
+                "order": 0
+            },
+               "name": {
+                "description": "名称",
+                "order": 1,
+                "saveOrder": 0
+            },
+             "qty": {
+                "description": "数量（PCS）",
+                "order": 2
+            },
+               "unitPrice": {
+                "description": "单价（元）",
+                "order": 3
+            },
+               "sum": {
+                "description": "合计（元）",
+                "order": 4,
+                "saveOrder": 1
+            },
+               "remark": {
+                "description": "备注",
+                "order": 5
+            },
+          }
+          ,
+        "Accessories": {
+            "id": {
+                "description": "序号",
+                "order": 0
+            },
+               "name": {
+                "description": "名称",
+                "order": 1,
+                "saveOrder": 0
+            },
+             "qty": {
+                "description": "数量（PCS）",
+                "order": 2
+            },
+               "unitPrice": {
+                "description": "单价（元）",
+                "order": 3
+            },
+               "sum": {
+                "description": "合计（元）",
+                "order": 4,
+                "saveOrder": 1
+            },
+               "remark": {
+                "description": "备注",
+                "order": 5
+            },
+          }
+          
+          ,
+        "ProjectCost": {
+            "id": {
+                "description": "序号",
+                "order": 0,
+                "saveOrder": 0
+            },
+               "project": {
+                "description": "项目",
+                "order": 1
+            },
+             "details": {
+                "description": "明细",
+                "order": 2
+            },
+               "cost": {
+                "description": "费用（圆）",
+                "order": 3,
+                "saveOrder": 1
+            },
+               "remark": {
+                "description": "备注",
+                "order": 4
+            }
+          }
+          
+            ,
+        "CostAdjustment": {
+            "id": {
+                "description": "序号",
+                "order": 0
+            },
+               "costAdjustment": {
+                "description": "材料成本调整区",
+                "order": 1,
+                "saveOrder": 0
+            },
+             "RMB": {
+                "description": " (RMB/kg)",
+                "order": 2,
+                "saveOrder": 1
+            },
+               "US": {
+                "description": " (US$/kg)",
+                "order": 3,
+                "saveOrder": 2
+            }
+          }
+}

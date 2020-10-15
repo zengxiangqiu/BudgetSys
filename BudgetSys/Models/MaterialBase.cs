@@ -39,5 +39,10 @@ namespace BudgetSys.Models
         [Ignore]
         public string batchNo { get; set; }
 
+        public void NotifyAllProps()
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+        }
+
     }
 }

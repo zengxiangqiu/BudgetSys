@@ -11,6 +11,8 @@ namespace BudgetSys.Repositories
 {
     public class ProjectCostRepository : MatetiralRepository<ProjectCost>, IMatetrialRepository
     {
+        private MetalViewModel<ProjectCost> viewModel;
+
         public ProjectCostRepository() : base(System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/Batches/ProjectCost/")
         {
         }
@@ -26,7 +28,11 @@ namespace BudgetSys.Repositories
 
         public override void Calculate(MaterialBase material)
         {
-            
+            var projectCost = material as ProjectCost;
+
+            var sum = viewModel.Details.Where(x => x.id != 18).Aggregate(0d, (totoal, x) => totoal + Convert.ToDouble(x.cost));
+
+            viewModel.Details.Where(x => x.id == 18).First().cost = sum.ToString();
         }
 
         public void DeleteRecord(object dataContext, object material)
@@ -39,11 +45,14 @@ namespace BudgetSys.Repositories
             return BatchType.ProjectCost;
         }
 
-        public void RenameColumn(DataGridColumn column)
+        public void RenameColumn(ObservableCollection<DataGridColumn> columns)
         {
-            var config = Sys.Columns.ProjectCost.Where(x => x.Key == column.Header.ToString()).First();
-            column.DisplayIndex = config.Value.order;
-            column.Header = config.Value.description;
+            Sys.Columns.ProjectCost.OrderBy(x => x.Value.order).ToList().ForEach(x =>
+            {
+                var col = columns.Where(c => c.Header.ToString() == x.Key).First();
+                col.DisplayIndex = x.Value.order;
+                col.Header = x.Value.description;
+            });
         }
 
         object IMatetrialRepository.AddNewItem(object dataContext)
@@ -53,7 +62,9 @@ namespace BudgetSys.Repositories
 
         object IMatetrialRepository.CreateViewModel(MetalBatch batch)
         {
-            return base.CreateViewModel(batch);
+             var vm = base.CreateViewModel(batch);
+            viewModel = (MetalViewModel<ProjectCost>)vm;
+            return vm;
         }
 
         void IMatetrialRepository.DeleteBatch(object dataContext, MetalBatch batch)
@@ -64,6 +75,11 @@ namespace BudgetSys.Repositories
         ObservableCollection<MetalBatch> IMatetrialRepository.GetBatches()
         {
             return base.GetBatches();
+        }
+
+        public void Calculate(MaterialBase materialBase, DataGridColumn column, object value)
+        {
+            base.Calculate(materialBase, column, value, Sys.Columns.ProjectCost);
         }
     }
 }

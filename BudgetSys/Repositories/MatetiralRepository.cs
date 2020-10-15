@@ -65,7 +65,7 @@ namespace BudgetSys.Repositories
 
         public virtual ObservableCollection<MetalBatch> GetBatches() 
         {
-            var batches = new DirectoryInfo(metalBasePath).GetFiles("*.json");
+            var batches = new DirectoryInfo(metalBasePath).GetFiles("*.json").Where(x=>!x.Name.Contains("default")).ToList();
             var batchesList = new ObservableCollection<MetalBatch>(batches.Select(x => new MetalBatch
             {
                 batchNo = x.Name.Replace(".json", ""),
@@ -80,13 +80,21 @@ namespace BudgetSys.Repositories
             ObservableCollection<T> details;
             try
             {
-                details = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<T>>(File.ReadAllText(metalBasePath + batch.batchNo + ".json"));
+                //if(batch!=null &&batch?.batchNo == "default")
+                //    details = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<T>>(File.ReadAllText(metalBasePath + "default.json"));
+                //else if(batch==null)
+                //    details = new ObservableCollection<T>();
+                //else
+                    details = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<T>>(File.ReadAllText(metalBasePath + batch.batchNo + ".json"));
             }
             catch (Exception)
             {
                 details = new ObservableCollection<T>();
             }
-          
+
+            if (batch?.batchNo == "default")
+                batch = null;
+
             return new MetalViewModel<T>
             {
                 Batches = GetBatches(),
@@ -155,6 +163,26 @@ namespace BudgetSys.Repositories
         public abstract IEnumerable<object> Tonnages { get; }
 
         public abstract BatchType GetBatchType();
+
+        public virtual void Calculate(MaterialBase materialBase, DataGridColumn column, Object value, Dictionary<string, ColumnProp> props)
+        {
+            try
+            {
+                var metal = materialBase as T;
+                var propName = props.Where(x => x.Value.description == column.Header.ToString()).First();
+                System.Reflection.PropertyInfo prop = materialBase.GetType().GetProperty(propName.Key, System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+                var val =  Convert.ChangeType(value, prop.PropertyType);
+                prop.SetValue(metal, val, null);
+
+                Calculate(materialBase);
+
+                metal.NotifyAllProps();
+            }
+            catch (Exception ex)
+            {
+                //log
+            }
+        }
 
     }
 }

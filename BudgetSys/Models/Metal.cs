@@ -14,16 +14,24 @@ namespace BudgetSys.Models
 
         private double _length;
 
+        /// <summary>
+        /// 长
+        /// </summary>
         public double m_length
         {
             get { return _length; }
-            set {
+            set
+            {
                 _length = value;
+                NotifyPropertyChanged();
             }
         }
 
         private double _m_weigth;
 
+        /// <summary>
+        /// 重量
+        /// </summary>
         public double m_weigth
         {
             get { return _m_weigth; }
@@ -37,18 +45,42 @@ namespace BudgetSys.Models
 
         private double _width;
 
+        /// <summary>
+        /// 宽
+        /// </summary>
         public double m_width
         {
             get { return _width; }
             set
             {
                 _width = value;
+                NotifyPropertyChanged();
             }
         }
 
-		public double m_thick { get; set; }
+        private double _thick;
+
+        /// <summary>
+        /// 厚度
+        /// </summary>
+		public double m_thick
+        {
+            get
+            {
+                return _thick;
+            }
+            set
+            {
+                _thick = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        /// 体积
+        /// </summary>
         private double _volume;
-		public double m_volume
+        public double m_volume
         {
             get { return _volume; }
             set
@@ -57,8 +89,7 @@ namespace BudgetSys.Models
                 NotifyPropertyChanged();
             }
         }
-		public int m_workStation { get; set; }
-
+        public int m_workStation { get; set; }
 
     }
 }

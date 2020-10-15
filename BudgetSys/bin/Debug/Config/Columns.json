@@ -18,11 +18,11 @@
         },
            "qty": {
             "description": "件数",
-            "order": 4
+            "order": 5
         },
            "p_netWeigth": {
             "description": "净重(g)",
-            "order": 5
+            "order": 4
         },
            "p_salivaId": {
             "description": "口水(g)",
@@ -34,11 +34,11 @@
         },
          "loss": {
             "description": "损耗（kg）",
-            "order": 8
+            "order": 9
         },
          "p_cavity": {
             "description": "模穴",
-            "order": 9
+            "order": 8
         },
          "p_cycle": {
             "description": "周期",
@@ -57,10 +57,10 @@
             "order": 13
         }, "finishedCost1": {
             "description": "加工成本(￥)",
-            "order": 14
+            "order": 15
         }, "p_ME1": {
             "description": "ME合计",
-            "order": 15
+            "order": 14
         }, "CMF1": {
             "description": "CMF(￥)",
             "order": 16
@@ -68,19 +68,19 @@
             "description": "合计(￥)",
             "order": 17
         },  "costOfMeterial2": {
-            "description": "材料成本(￥)",
+            "description": "材料成本($)",
             "order": 18
         }, "finishedCost2": {
-            "description": "加工成本(￥)",
+            "description": "加工成本($)",
             "order": 19
         }, "p_ME2": {
             "description": "ME合计",
             "order": 20
         }, "CMF2": {
-            "description": "CMF(￥)",
+            "description": "CMF($)",
             "order": 21
         }, "total2": {
-            "description": "合计(￥)",
+            "description": "合计($)",
             "order": 22
         }
         
@@ -153,16 +153,16 @@
             "description": "合计(￥)",
             "order": 17
         },  "costOfMeterial2": {
-            "description": "材料成本(￥)",
+            "description": "材料成本($)",
             "order": 18
         }, "finishedCost2": {
-            "description": "加工成本(￥)",
+            "description": "加工成本($)",
             "order": 19
         }, "CMF2": {
-            "description": "CMF(￥)",
+            "description": "CMF($)",
             "order": 20
         }, "total2": {
-            "description": "合计(￥)",
+            "description": "合计($)",
             "order": 21
         }
     },

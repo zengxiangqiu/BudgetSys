@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BudgetSys.Models
 {
-    public class ExchangeRate
+    public class ExchangeRate:MasterBase
     {
-        public int id { get; set; }
         public float Current { get; set; }
     }
 }

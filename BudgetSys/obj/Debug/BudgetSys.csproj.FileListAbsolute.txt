@@ -35,8 +35,6 @@ D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.exe
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.pdb
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.dll
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.xml
-D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.g.cs
-D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.baml
 D:\Projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.dll
 D:\Projects\BudgetSys\BudgetSys\bin\Debug\Newtonsoft.Json.xml
 D:\Projects\BudgetSys\BudgetSys\obj\Debug\SaveWindow.g.cs
@@ -55,3 +53,7 @@ D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\ExportWindow.g.cs
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\ExportWindow.baml
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\FileSelector.g.cs
 D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\FileSelector.baml
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\MasterWindow.g.cs
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\MasterWindow.baml
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\bin\Debug\Npoi.Mapper.pdb
+D:\VS Projects\dotnet-projects\BudgetSys\BudgetSys\obj\Debug\BudgetSys.csprojAssemblyReference.cache

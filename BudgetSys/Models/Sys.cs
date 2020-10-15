@@ -19,7 +19,7 @@ namespace BudgetSys.Models
             {
                 if (_metalMaterials == null)
                 {
-                    _metalMaterials = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MetalMaterial>>(File.ReadAllText(configPath + "Materials.json"));
+                    _metalMaterials = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MetalMaterial>>(File.ReadAllText(configPath + "MetalMaterial.json"));
                 }
                 return _metalMaterials;
             }
@@ -33,7 +33,7 @@ namespace BudgetSys.Models
             {
                 if (_metalTonnages == null)
                 {
-                    _metalTonnages = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MetalTonnage>>(File.ReadAllText(configPath + "Tonnages.json"));
+                    _metalTonnages = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MetalTonnage>>(File.ReadAllText(configPath + "MetalTonnage.json"));
                 }
                 return _metalTonnages;
             }
@@ -72,7 +72,7 @@ namespace BudgetSys.Models
             {
                 if (_plasticMaterials == null)
                 {
-                    _plasticMaterials = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PlasticMaterial>>(File.ReadAllText(configPath + "PlasticMaterials.json"));
+                    _plasticMaterials = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PlasticMaterial>>(File.ReadAllText(configPath + "PlasticMaterial.json"));
                 }
                 return _plasticMaterials;
             }
@@ -86,7 +86,7 @@ namespace BudgetSys.Models
             {
                 if (_plasticTonnages == null)
                 {
-                    _plasticTonnages = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PlasticTonnage>>(File.ReadAllText(configPath + "PlasticTonnages.json"));
+                    _plasticTonnages = Newtonsoft.Json.JsonConvert.DeserializeObject<List<PlasticTonnage>>(File.ReadAllText(configPath + "PlasticTonnage.json"));
                 }
                 return _plasticTonnages;
             }

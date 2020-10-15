@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -22,29 +23,41 @@ namespace BudgetSys
     /// </summary>
     public partial class SaveWindow: Window 
     {
-        public event Action<object> OnSave;
+        private Action<MasterBase> DeleteDelegate;
 
-        public SaveWindow(object viewModel)
+        private string filePath;
+       
+        public SaveWindow( )
         {
-            this.DataContext = viewModel;
             InitializeComponent();
+        }
+
+
+        public void LoadSource<T>()where T:MasterBase, new()
+        {
+            gb.Header = new T().GetType().Name;
+            filePath = Sys.configPath + new T().GetType().Name + ".json";
+            var source = Newtonsoft.Json.JsonConvert.DeserializeObject<ObservableCollection<T>>(File.ReadAllText(filePath));
+            DeleteDelegate = item=>
+            {
+                source.Remove(item as T);
+            };
+
+            this.DataContext = source;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (OnSave != null)
-                OnSave(this.DataContext);
+            var jsonStr = Newtonsoft.Json.JsonConvert.SerializeObject(dgDetail.DataContext);
+            File.WriteAllText(filePath, jsonStr);
+            MessageBox.Show("保存成功,重启系统后生效", "提示");
+            Sys.Reset();
             this.Close();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
-        }
-
-        private void DataGrid_AddingNewItem(object sender, AddingNewItemEventArgs e)
-        {
-            
         }
 
         private void DataGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -77,6 +90,11 @@ namespace BudgetSys
                     col.DisplayIndex = 0;
                 }
             }
+        }
+
+        private void BtnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteDelegate(dgDetail.SelectedItem as MasterBase);
         }
     }
 }

@@ -26,7 +26,7 @@
             "order": 4
         },
            "p_salivaId": {
-            "description": "口水(g)",
+            "description": "水口(g)",
             "order": 6
         },
          "p_grossWeight": {

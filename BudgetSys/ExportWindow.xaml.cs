@@ -56,14 +56,11 @@ namespace BudgetSys
 
                 var mapper = new Mapper();
 
-
-
-
-                Put<Metal>(mapper, evm.Metals, BatchType.Metal.ToString(), Sys.Columns.Metal);
-                Put<Plastic>(mapper, evm.Platics, BatchType.Plastic.ToString(), Sys.Columns.Plastic);
-                Put<ProjectCost>(mapper, evm.ProjectCost, BatchType.ProjectCost.ToString(), Sys.Columns.ProjectCost);
-                Put<CostAdjustment>(mapper, evm.CostAdjustment, BatchType.CostAdjustment.ToString(), Sys.Columns.CostAdjustment);
-                Put<PurchasedParts>(mapper, evm.PurchasedParts, BatchType.PurchasedParts.ToString(), Sys.Columns.PurchasedParts);
+                mapper.Put<Metal>(evm.Metals, BatchType.Metal.ToString(), Sys.Columns.Metal);
+                mapper.Put<Plastic>(evm.Platics, BatchType.Plastic.ToString(), Sys.Columns.Plastic);
+                mapper.Put<ProjectCost>(evm.ProjectCost, BatchType.ProjectCost.ToString(), Sys.Columns.ProjectCost);
+                mapper.Put<CostAdjustment>(evm.CostAdjustment, BatchType.CostAdjustment.ToString(), Sys.Columns.CostAdjustment);
+                mapper.Put<PurchasedParts>(evm.PurchasedParts, BatchType.PurchasedParts.ToString(), Sys.Columns.PurchasedParts);
 
                 try
                 {
@@ -78,7 +75,15 @@ namespace BudgetSys
             }
         }
 
-        private void Put<T>(Mapper mapper, ObservableCollection<ExportFile> files, string materialType, Dictionary<string, ColumnProp> colsJson)
+        private void btnColse_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+    }
+
+    public static class MapExtensions
+    {
+        public static void Put<T>(this Mapper mapper, ObservableCollection<ExportFile> files, string materialType, Dictionary<string, ColumnProp> colsJson)
         {
             foreach (var col in colsJson)
             {
@@ -90,43 +95,35 @@ namespace BudgetSys
                 var batch = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + "/Batches/" + materialType + "/" + item.fileName + ".json";
                 var metals = Newtonsoft.Json.JsonConvert.DeserializeObject<List<T>>(File.ReadAllText(batch));
                 mapper.Put<T>(metals, materialType + "-" + item.fileName, true, columns =>
-                 {
-                     foreach (var col in colsJson)
-                     {
-                         try
-                         {
-                              columns.Where(x => x.Key.Name == col.Key).ForEach(kp=> {
-                                  if (col.Value.saveOrder < 0)
-                                  {
-                                      var ignoreAttribute = new Npoi.Mapper.Attributes.ColumnAttribute
-                                      {
-                                          Ignored = true
-                                      };
-                                      ignoreAttribute.Property = kp.Key;
-                                      ignoreAttribute.MergeTo(columns);
-                                      kp.Value.Index = -1;
-                                  }
-                                  else
-                                  {
-                                      kp.Value.Index = col.Value.saveOrder;
-                                  }
-                              }) ;
+                {
+                    foreach (var col in colsJson)
+                    {
+                        try
+                        {
+                            var kp = columns.Where(x => x.Key.Name == col.Key && x.Key.ReflectedType == typeof(T)).First();
+                            if (col.Value.saveOrder < 0)
+                            {
+                                var ignoreAttribute = new Npoi.Mapper.Attributes.ColumnAttribute
+                                {
+                                    Ignored = true
+                                };
+                                ignoreAttribute.Property = kp.Key;
+                                ignoreAttribute.MergeTo(columns);
+                                kp.Value.Index = -1;
+                            }
+                            else
+                            {
+                                kp.Value.Index = col.Value.saveOrder;
+                            }
+                        }
+                        catch (Exception)
+                        {
+                            continue;
+                        }
 
-                       
-                         }
-                         catch (Exception)
-                         {
-                             continue;
-                         }
-
-                     }
-                 });
+                    }
+                });
             }
-        }
-
-        private void btnColse_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
         }
     }
 }

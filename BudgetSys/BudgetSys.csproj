@@ -198,13 +198,27 @@
     <None Include="Batches\PurchasedParts\default.json" />
     <None Include="Batches\PurchasedParts\test.json" />
     <None Include="Batches\PurchasedParts\外购标准件.json" />
-    <None Include="Config\Columns.json" />
-    <None Include="Config\ExchangeRate.json" />
-    <None Include="Config\MetalMaterial.json" />
-    <None Include="Config\MetalTonnage.json" />
-    <None Include="Config\PlasticMaterial.json" />
-    <None Include="Config\PlasticSalivaId.json" />
-    <None Include="Config\PlasticTonnage.json" />
+    <None Include="Config\Columns.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\ExchangeRate.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\MetalMaterial.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\MetalTonnage.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\PlasticMaterial.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\PlasticSalivaId.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Config\PlasticTonnage.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

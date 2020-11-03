@@ -62,6 +62,9 @@ namespace BudgetSys.Repositories
                 //材料成本2
                 metal.costOfMeterial2 = Math.Round(metal.costOfMeterial1 / Sys.ExchangeRate.First().Current,2);
 
+                //CMF2
+                metal.CMF2 = Math.Round(metal.CMF1 / Sys.ExchangeRate.First().Current, 2);
+
                 //total2
                 metal.total2= Math.Round(metal.total1 / Sys.ExchangeRate.First().Current,2);
 

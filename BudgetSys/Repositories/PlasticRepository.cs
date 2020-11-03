@@ -44,7 +44,7 @@ namespace BudgetSys.Repositories
                     }
                 }
 
-                //口水
+                //水口
                 plastic.p_salivaId = Math.Round(plastic.p_netWeigth * salivaId.percent,2);
                 //毛重量
                 plastic.p_grossWeight = Math.Round(plastic.qty *( plastic.p_netWeigth+plastic.p_salivaId),2);
@@ -77,6 +77,9 @@ namespace BudgetSys.Repositories
                 plastic.costOfMeterial2 = Math.Round(plastic.costOfMeterial1 / Sys.ExchangeRate.First().Current,2);
 
                 plastic.p_ME2 = Math.Round(plastic.p_ME1 / Sys.ExchangeRate.First().Current,2);
+
+                //CMF2
+                plastic.CMF2 = Math.Round(plastic.CMF1 / Sys.ExchangeRate.First().Current, 2);
 
                 //total2
                 plastic.total2 = Math.Round(plastic.total1 / Sys.ExchangeRate.First().Current,2);

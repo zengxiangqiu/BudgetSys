@@ -67,7 +67,22 @@ namespace BudgetSys.Models
             }
         }
 
-        public double CMF1 { get; set; }
+        private double _CMF1;
+        public double CMF1
+        {
+            get
+            {
+                return _CMF1;
+            }
+            set
+            {
+                if (_CMF1 != value)
+                {
+                    _CMF1 = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
 
         private double _total1;
@@ -121,7 +136,23 @@ namespace BudgetSys.Models
             }
         }
 
-        public double CMF2 { get; set; }
+
+        private double _CMF2;
+        public double CMF2
+        {
+            get
+            {
+                return _CMF2;
+            }
+            set
+            {
+                if (_CMF2 != value)
+                {
+                    _CMF2 = value;
+                    NotifyPropertyChanged();
+                }
+            }
+        }
 
 
         private double _total2;
